@@ -2,19 +2,22 @@
   "name": "kiku",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "dev": "node app.js --watch"
+    "dev": "node --env-file development.env app.js --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sergio Otero",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cross-env": "^10.1.0",
     "express": "^5.2.1",
+    "http-errors": "^2.0.1",
     "mongoose": "^9.2.4",
     "morgan": "^1.10.1"
   }
