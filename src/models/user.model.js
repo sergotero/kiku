@@ -21,6 +21,10 @@ const userSchema = mongoose.Schema({
     maxLength: 15,
     match: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,15}$/, "La contraseña debe contener al menos una minúscula, una mayúscula, un número y un símbolo y debe tener entre 5 y 15 caracteres"]
   },
+  lists: {
+    type: [mongoose.Types.ObjectId],
+    ref: "List"
+  }
 },{
   timestamps: true,
   versionKey: false,

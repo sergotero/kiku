@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "node --env-file development.env app.js --watch"
+    "dev": "node --watch --env-file development.env app.js"
   },
   "keywords": [],
   "author": "Sergio Otero",

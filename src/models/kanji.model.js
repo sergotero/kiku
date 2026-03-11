@@ -86,7 +86,7 @@ const kanjiSchema = mongoose.Schema({
   unicode: unicodeSchema,
   classification: classificationSchema,
   strokes: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Types.ObjectId,
     ref: "Stroke"
   },
   variants: [variantsSchema],
@@ -102,7 +102,12 @@ const kanjiSchema = mongoose.Schema({
 }, {
   timestamps: true,
   versionKey: false,
-  toJSON: { virtuals: true }
+  toJSON: {
+    virtuals: true, 
+    transform: function (doc, ret) {
+      delete ret._id;
+    } 
+  }
 });
 
 const Kanji = mongoose.model("Kanji", kanjiSchema);

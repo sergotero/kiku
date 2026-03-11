@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 // --- Sub-schemas ---
 const termSchema = mongoose.Schema({
-  text: { type: String, required: true },
+  text: { type: String, required: true, unique: true, index: true },
   info: [String],
   priority: [String]
 },
@@ -46,7 +46,7 @@ const senseSchema = mongoose.Schema({
 
 // --- Schema Principal ---
 const wordSchema = mongoose.Schema({
-  id_XML: { type: Number, required: true, index: true },
+  id_XML: { type: Number, required: true },
   word: [termSchema],
   readings: [readingSchema],
   senses: [senseSchema],
