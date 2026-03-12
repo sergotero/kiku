@@ -46,7 +46,7 @@ const senseSchema = mongoose.Schema({
 
 // --- Schema Principal ---
 const wordSchema = mongoose.Schema({
-  id_XML: { type: Number, required: true },
+  id_XML: { type: Number},
   word: [termSchema],
   readings: [readingSchema],
   senses: [senseSchema],
@@ -56,7 +56,12 @@ const wordSchema = mongoose.Schema({
 }, {
   timestamps: true,
   versionKey: false,
-  toJSON: { virtuals: true }
+  toJSON: {
+    virtuals: true,
+    transform: function (doc, ret) {
+      delete ret._id;
+    } 
+  }
 });
 
 const Word = mongoose.model("Word", wordSchema);

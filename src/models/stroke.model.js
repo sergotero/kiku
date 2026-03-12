@@ -16,7 +16,12 @@ const strokeSchema = mongoose.Schema({
 },{
   timestamps: true,
   versionKey: false,
-  toJSON: { virtuals: true }
+  toJSON: {
+    virtuals: true,
+    transform: function (doc, ret) {
+      delete ret._id;
+    }
+  }
 });
 
 const Stroke = mongoose.model("Stroke", strokeSchema);

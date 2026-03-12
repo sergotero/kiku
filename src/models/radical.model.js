@@ -7,7 +7,12 @@ const radicalSchema = mongoose.Schema({
 },{
   timestamps: true,
   versionKey: false,
-  toJSON: { virtuals: true }
+  toJSON: {
+    virtuals: true,
+    transform: function (doc, ret) {
+      delete ret._id;
+    }
+  }
 });
 
 const Radical = mongoose.model("Radical", radicalSchema);

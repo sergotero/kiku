@@ -6,7 +6,12 @@ const listSchema = mongoose.Schema({
 },{
   timestamps: true,
   versionKey: false,
-  toJSON: { virtuals: true }
+  toJSON: {
+    virtuals: true,
+    transform: function (doc, ret) {
+      delete ret._id;
+    }
+  }
 });
 
 const List = mongoose.model("List", listSchema);

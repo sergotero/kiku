@@ -12,7 +12,8 @@ const userSchema = mongoose.Schema({
   email: {
     type: String,
     required: true,
-    match: [/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-z]{2,6}$/, "Introduce un email válido"]
+    match: [/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-z]{2,6}$/, "Introduce un email válido"],
+    unique: true
   },
   password: {
     type: String,
@@ -28,7 +29,12 @@ const userSchema = mongoose.Schema({
 },{
   timestamps: true,
   versionKey: false,
-  toJSON: { virtuals: true }
+  toJSON: {
+    virtuals: true,
+    transform: function (doc, ret) {
+      delete ret._id;
+    }
+  }
 });
 
 user.methods.checkPassword = async (pass) => await bcrypt.compare(pass, this.password);
