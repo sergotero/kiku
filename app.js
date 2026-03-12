@@ -4,6 +4,7 @@ import morgan from "morgan";
 import router from "./src/config/routes.config.js";
 import errors from "./src/middlewares/errors.middleware.js";
 import "./src/config/database.config.js";
+import checkAuth from "./src/middlewares/auth.middleware.js";
 
 
 const app = express();
@@ -11,6 +12,7 @@ const app = express();
 app.use(cors);
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(checkAuth);
 app.use(router);
 
 app.use(errors);

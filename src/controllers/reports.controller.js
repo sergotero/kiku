@@ -2,7 +2,7 @@ import Report from "./../models/report.model.js";
 import createHttpError from "http-errors";
 
 export async function create(req, res) {
-  const storedReport = await Report.findOne({itemId: req.body.itemId});
+  const storedReport = await Report.findOne({item: req.body.item});
 
   if (storedReport) {
     throw createHttpError(400, "El informe ya existe en la base de datos");
@@ -14,7 +14,8 @@ export async function create(req, res) {
 
 export async function list(req, res) {
   const reports = await Report.find({});
-  if (reports.length > 0) {
+  
+  if (!reports.length > 0) {
     throw createHttpError(404, "No hay informes registrados en la base de datos");
   }
 

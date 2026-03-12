@@ -38,7 +38,7 @@ router.delete(`/api/words/:id`, WordController.destroy);
 //Routes for Users
 router.post(`/api/users`, UserController.create);
 router.get(`/api/users`, UserController.list);
-router.get(`/api/users/profile`, UserController.detail);
+router.get(`/api/users/:id`, UserController.detail);
 router.patch(`/api/users/:id`, UserController.update);
 router.delete(`/api/users/:id`, UserController.destroy);
 
@@ -47,7 +47,7 @@ router.delete(`/api/users/:id`, UserController.destroy);
 
 //Routes for login and logout
 router.post(`/api/sessions`, UserController.login);
-router.delete(`/api/sessions`, UserController.login);
+router.delete(`/api/sessions`, UserController.logout);
 
 //Routes for reporting problems
 router.post(`/api/reports`, ReportController.create);

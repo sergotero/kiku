@@ -19,12 +19,13 @@ const readingSchema = mongoose.Schema({
 
 const partOfSpeechSchema = mongoose.Schema({
   code_XML: {type: String, required: true},
-  label: {type: String, required: true} //index?
+  label: {type: String, required: true, index: true}
 },
 { _id: false });
 
 const glossesSchema = mongoose.Schema({
-  eng: {type: [String], required: true}
+  eng: {type: [String], required: true},
+  spa: {type: [String], required: true}
 },
 { _id: false });
 
@@ -46,12 +47,12 @@ const senseSchema = mongoose.Schema({
 
 // --- Schema Principal ---
 const wordSchema = mongoose.Schema({
-  id_XML: { type: Number},
+  id_XML: { type: Number, unique: true},
   word: [termSchema],
   readings: [readingSchema],
   senses: [senseSchema],
-  kanjiCharacters: {type: [mongoose.Types.ObjectId], ref: "Kanji"},
-  searchForms: [String],
+  kanjiCharacters: {type: [mongoose.Types.ObjectId], ref: "Kanji", index: true},
+  searchForms: {type: [String], index: true},
   romaji: [String]
 }, {
   timestamps: true,

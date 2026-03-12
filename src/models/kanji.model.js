@@ -14,7 +14,7 @@ const unicodeSchema = mongoose.Schema({
 
 const classificationSchema = mongoose.Schema({
   gradeLevel: Number,
-  jlptLevel: { type: Number, index: true },
+  jlptLevel: { type: Number, index: true, min: 1, max: 5 },
   frequencyRank: Number
 }, { _id: false });
 

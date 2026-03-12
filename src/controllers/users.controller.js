@@ -1,5 +1,6 @@
 import User from "./../models/user.model.js";
 import Session from "./../models/session.model.js";
+import List from "./../models/list.model.js";
 import createHttpError from "http-errors";
 
 export async function create(req, res) {
@@ -15,7 +16,7 @@ export async function create(req, res) {
 
 export async function list(req, res) {
   const users = await User.find({});
-  if (users.length > 0) {
+  if (users.length === 0) {
     throw createHttpError(404, "No hay usuarios registrados en la base de datos");
   }
 
@@ -24,7 +25,8 @@ export async function list(req, res) {
 
 export async function detail(req, res) {
   const { id } = req.params;
-  const user = await User.findById(id);
+  
+  const user = await User.findById(id).populate("lists");
 
   if (!user) {
     throw createHttpError(404, "El usuario no se encuentra registrado en la base de datos");
@@ -74,7 +76,7 @@ export async function login(req, res) {
     throw createHttpError(401, "Credenciales inválidas");
   }
 
-  const session = await Session.create({ userId: user.id});
+  const session = await Session.create({ user: user.id});
   res.cookie("sessionId", session.id, {
     httpOnly: true,
     secure: process.env.COOKIE_SECURE === "true",
@@ -86,8 +88,8 @@ export async function login(req, res) {
 }
 
 export async function logout(req, res) {
-  const { id } = req.session;
-  const checkSession = await Session.findByIdAndDelete(id);
+
+  const checkSession = await Session.findByIdAndDelete(req.session.id);
 
   if(!checkSession) {
     throw createHttpError(404, "La sesión no se encuentra en la base de datos");

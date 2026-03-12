@@ -1,10 +1,13 @@
 import mongoose from "mongoose";
 
 const reportSchema = mongoose.Schema({
-  userId: { type: mongoose.Types.ObjectId, ref: "User" },
-  
+  user: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: true
+  },
   // El ID del objeto (puede ser de Word o de Kanji)
-  itemId: { 
+  item: { 
     type: mongoose.Types.ObjectId, 
     required: true, 
     refPath: 'onModel' 
@@ -21,7 +24,13 @@ const reportSchema = mongoose.Schema({
   isSolved: { type: Boolean, default: false }
 }, {
   timestamps: true,
-  versionKey: false
+  versionKey: false,
+  toJSON: {
+    virtuals: true,
+    transform: function (doc, ret) {
+      delete ret._id;
+    }
+  }
 });
 
 const Report = mongoose.model("Report", reportSchema);
