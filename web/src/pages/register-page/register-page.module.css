@@ -1,0 +1,11 @@
+.section{
+  padding: 2% 5%;
+  background-color: var(--smoke-grey);
+}
+
+.section h1{
+  color: var(--white);
+  font-weight: 700;
+  text-align: center;
+  padding: 1%;
+}

@@ -1,0 +1,59 @@
+/* Estilo inicial */
+.sidenav{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+  height: 100%;
+  width: 0; /* Comienza cerrada */
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  background-color: #111; /* Color de fondo */
+  overflow-x: hidden; /* Oculta el scroll horizontal */
+  transition: width 0.5s; /* Transición suave */
+  padding-top: 60px;
+}
+
+/* Sólo se aplica si se pulsa el botón para abrir */
+.sidenav.open {
+  width: 250px;
+}
+
+/* Estilo de los enlaces dentro */
+.sidenav a {
+  display: block;
+  padding: 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  transition: 0.3s;
+  border-bottom: 1px dotted rgba(179, 179, 179, 0.2);
+}
+
+.sidenav a:hover {
+  color: var(--green);
+}
+
+/* Botón para cerrar */
+.closebtn {
+  position: absolute;
+  display: block;
+  top: 0px;
+  right: 0px;
+  font-size: 36px;
+  border: none;
+  margin: 0px;
+  padding: 0px 1rem;
+  background: none;
+  color: var(--light-grey);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.sidenav .closebtn:hover{
+  color: var(--error);
+}
+
+

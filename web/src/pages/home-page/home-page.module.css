@@ -1,0 +1,102 @@
+.intro, .options{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 5rem;
+  width: 100%;
+}
+
+h1, h2{
+  font-size: 5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  text-align: left;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+p{
+  text-align: justify;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.intro ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
+  padding: 1rem 3rem;
+}
+
+.intro ul li{
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+hr{
+  border-top: 1px dotted var(--strong-gold);
+  border-bottom: none;
+  width: 90%;
+  opacity: 1;
+}
+
+table, thead, tbody, tr, th, td {
+  border-collapse: collapse;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+th, tr, td {
+  padding: 0.5rem;
+  text-align: justify;
+}
+
+.option-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.kanji, .kotoba, .bunpou, .kanas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--strong-gold);
+  width: 300px;
+  height: 300px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px var(--chalk-grey);
+}
+
+.kanji > h2, .kotoba > h2, .bunpou > h2, .kanas > h2 {
+  font-size: 5rem;
+}
+
+.kanji {
+
+}
+
+.kotoba {
+
+}
+
+.bunpou {
+
+}
+
+.kanas {
+
+}
