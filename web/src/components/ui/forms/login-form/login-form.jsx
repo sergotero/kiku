@@ -42,9 +42,10 @@ function LoginForm(){
   }
 
   return (
-    <form className={styles.form} method="post" onSubmit={handleSubmit(onLoginUser)}>
+    <form className={styles.form} method="POST" onSubmit={handleSubmit(onLoginUser)}>
       <fieldset className={styles.fieldset}>
         {/* EMAIL */}
+        {errors.email && (<p className={styles.errors}>{errors.email.message}</p>)}
         <div className={`${styles.inputGroup} ${errors.email ? styles.isInvalid: ""}`}>
           <label className={styles.label} htmlFor="email">Email</label>
           <input
@@ -60,9 +61,9 @@ function LoginForm(){
             id="email"
           />
         </div>
-        {errors.email && (<p className={styles.errors}>{errors.email.message}</p>)}
 
         {/* PASSWORD */}
+        {errors.password && (<p className={styles.errors}>{errors.password.message}</p>)}
         <div className={`${styles.inputGroup} ${errors.password ? styles.isInvalid: ""}`}>
           <label className={styles.label} htmlFor="password">Password</label>
           <input 
@@ -73,8 +74,12 @@ function LoginForm(){
                   message: "*A password is required"
                 },
                 minLength: {
-                  value: 3,
+                  value: 5,
                   message: "*Min length is 3 chars"
+                },
+                maxLength: {
+                  value: 15,
+                  message: "*Max length is 15 chars"
                 }
               })
             }
@@ -82,7 +87,6 @@ function LoginForm(){
             id="password"
           />
         </div>
-        {errors.password && (<p className={styles.errors}>{errors.password.message}</p>)}
       </fieldset>
       
       {/* BUTTON */}

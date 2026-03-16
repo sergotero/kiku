@@ -18,25 +18,19 @@ function Navbar() {
           </div>
         </Link>
         <ul>
-          <li>
-            <Link to="/books">Catálogo</Link>
-          </li>
-          {/* {!user ? (
-            <>
+
               <li>
                 <Link to="/login">Acceso</Link>
               </li>
               <li>
                 <Link to="/register">Registro</Link>
               </li>
-            </>
-            ) : (
-            <>
+            {/*
               <li className={styles.logout} onClick={() => {setIsOpen(!isOpen)}}>
                 <i className="fa-solid fa-user"></i>
               </li>
             </>
-            )} */}
+            */}
         </ul>
       </nav>
       {/* <SideNav open={isOpen} setIsOpen={setIsOpen} /> */}

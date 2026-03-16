@@ -1,0 +1,24 @@
+details {
+  background-color: var(--chalk-grey);
+  width: 100%;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+}
+
+summary:hover {
+  background-color: var(--strong-gold);
+  transition: 0.5s;
+}
+
+.content{
+  background-color: var(--smoke-grey);
+  padding: 1rem;
+}
+
+details[open] summary {
+  background-color: var(--strong-gold);
+}
