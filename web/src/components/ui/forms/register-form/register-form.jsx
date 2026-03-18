@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import styles from "./register-form.module.css";
 import { useNavigate } from "react-router";
-// import * as AuthServices from "./../../../../services/auth-services";
+import * as ApiService from "./../../../../services/api-service.js";
 
 const defaultValues = {
   defaultValues: {
     name: "",
-    surname: "",
+    lastName: "",
     email: "",
     password: "",
     confirm_pass: ""
@@ -27,15 +27,20 @@ function RegisterForm(){
 
   const onRegisterUser = async (user) => {
     try {
-      
+      const newUser = await ApiService.register(user);
+      if (newUser) {
+        reset();
+      }
     } catch (error) {
-      // const { status } = error;
-      // if (status === 400) {
-      //   const { errors } = error.response?.data || {};
-      //   Object.keys(errors).forEach((inputName) => {
-      //     setError(inputName, {type: "custom", message: errors[inputName]});
-      //   });
-      // }
+      console.log("Error: ", error);
+      
+      const { status } = error;
+      if (status === 400) {
+        const { errors } = error.response?.data || {};
+        Object.keys(errors).forEach((inputName) => {
+          setError(inputName, {type: "custom", message: errors[inputName]});
+        });
+      }
     }
   }
 
@@ -44,8 +49,9 @@ function RegisterForm(){
       <fieldset className={styles.fieldset}>
         
         {/* NAME */}
+        {errors.name && (<p className={styles.errors}>{errors.name.message}</p>)}
         <div className={`${styles.inputGroup} ${errors.name ? styles.isInvalid: ""}`}>
-          <label className={styles.label} htmlFor="name">Name</label>
+          <label className={styles.label} htmlFor="name">Nombre</label>
           <input 
             className={styles.input}
             {...register("name",
@@ -60,14 +66,14 @@ function RegisterForm(){
             id="name"
           />
         </div>
-          {errors.name && (<p className={styles.errors}>{errors.name.message}</p>)}
 
-        {/* SURNAME */}
-        <div className={`${styles.inputGroup} ${errors.surname ? styles.isInvalid: ""}`}>
-          <label className={styles.label} htmlFor="">Surname</label>
+        {/* lastName */}
+        {errors.lastName && (<p className={styles.errors}>{errors.lastName.message}</p>)}
+        <div className={`${styles.inputGroup} ${errors.lastName ? styles.isInvalid: ""}`}>
+          <label className={styles.label} htmlFor="">Apellido</label>
           <input 
             className={styles.input} 
-            {...register("surname", 
+            {...register("lastName", 
               { required: {
                   value: true,
                   message: "*Se requiere un apellido"
@@ -75,12 +81,12 @@ function RegisterForm(){
               })
             } 
             type="text"
-            id="surname"
+            id="lastName"
         />
         </div>
-        {errors.surname && (<p className={styles.errors}>{errors.surname.message}</p>)}
 
         {/* EMAIL */}
+        {errors.email && (<p className={styles.errors}>{errors.email.message}</p>)}
         <div className={`${styles.inputGroup} ${errors.email ? styles.isInvalid: ""}`}>
           <label className={styles.label} htmlFor="email">Email</label>
           <input
@@ -88,7 +94,11 @@ function RegisterForm(){
             {...register("email", 
               { required: {
                   value: true,
-                  message: "*Se requiere un correo electrónico"
+                  message: "*Se requiere un email"
+                },
+                pattern: {
+                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-z]{2,6}$/,
+                  message: "El email debe ser válido"
                 }
               })
             }
@@ -96,11 +106,11 @@ function RegisterForm(){
             id="email"
           />
         </div>
-        {errors.email && (<p className={styles.errors}>{errors.email.message}</p>)}
 
         {/* PASSWORD */}
+        {errors.password && (<p className={styles.errors}>{errors.password.message}</p>)}
         <div className={`${styles.inputGroup} ${errors.password ? styles.isInvalid: ""}`}>
-          <label className={styles.label} htmlFor="password">Password</label>
+          <label className={styles.label} htmlFor="password">Contraseña</label>
           <input 
             className={styles.input}
             {...register("password",
@@ -109,8 +119,16 @@ function RegisterForm(){
                   message: "*Se requiere una contraseña"
                 },
                 minLength: {
-                  value: 3,
-                  message: "*El tamaño mínimo es de 3 caracteres"
+                  value: 5,
+                  message: "*La contraseña debe tener, al menos, 5 caracteres"
+                },
+                maxLength: {
+                  value: 15,
+                  message: "*La contraseña debe tener, como máximo, 15 caracteres"
+                },
+                pattern: {
+                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,15}$/,
+                  message: "*La contraseña debe contener al menos una minúscula, una mayúscula, un número y un símbolo y debe tener entre 5 y 15 caracteres"
                 }
               })
             }
@@ -118,21 +136,29 @@ function RegisterForm(){
             id="password"
           />
         </div>
-        {errors.password && (<p className={styles.errors}>{errors.password.message}</p>)}
 
         {/* CONFIRM PASSWORD */}
+        {errors.confirm_pass && (<p className={styles.errors}>{errors.confirm_pass.message}</p>)}
         <div className={`${styles.inputGroup} ${errors.confirm_pass ? styles.isInvalid: ""}`}>
-          <label className={styles.label} htmlFor="confirm_pass">Repeat password</label>
+          <label className={styles.label} htmlFor="confirm_pass">Confirmar contraseña</label>
           <input 
             className={styles.input} 
             {...register("confirm_pass", 
               { required: {
                   value: true,
-                  message: "*Se requiere una confirmación de la contraseña"
+                  message: "*Se requiere una contraseña"
                 },
                 minLength: {
-                  value: 3,
-                  message: "*El tamaño mínimo es de 3 caracteres"
+                  value: 5,
+                  message: "*La contraseña debe tener, al menos, 5 caracteres"
+                },
+                maxLength: {
+                  value: 15,
+                  message: "*La contraseña debe tener, como máximo, 15 caracteres"
+                },
+                pattern: {
+                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,15}$/,
+                  message: "*La contraseña debe contener al menos una minúscula, una mayúscula, un número y un símbolo y debe tener entre 5 y 15 caracteres"
                 }
               })
             } 
@@ -140,11 +166,10 @@ function RegisterForm(){
             id="confirm_pass" 
           />
         </div>
-        {errors.confirm_pass && (<p className={styles.errors}>{errors.confirm_pass.message}</p>)}
       </fieldset>
       
       {/* BUTTON */}
-      <button className={`${styles.button} ${!isValid?styles.invalid:""}`} type="submit" disabled={(!isValid)? true: false}>Register</button>
+      <button className={`${styles.button} ${!isValid ? styles.invalid : ""}`} type="submit" disabled={(!isValid) ? true : false}>Registrarse</button>
     </form>
   );
 }

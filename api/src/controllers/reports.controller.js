@@ -15,7 +15,7 @@ export async function create(req, res) {
 export async function list(req, res) {
   const reports = await Report.find({});
   
-  if (!reports.length > 0) {
+  if (reports.length < 1) {
     throw createHttpError(404, "No hay informes registrados en la base de datos");
   }
 

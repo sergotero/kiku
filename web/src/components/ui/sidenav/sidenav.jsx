@@ -3,11 +3,11 @@ import { useAuth } from "../../context";
 import styles from "./sidenav.module.css";
 
 function SideNav({ open, setIsOpen }) {
-  const { logout } = useAuth();
+  const { userLogout } = useAuth();
   
   const handleLogOut = () => {
     //Logout within the AuthContext
-    logout();
+    userLogout();
   };
 
   return (

@@ -33,7 +33,7 @@ export async function list(req, res) {
       "radicals.components": 1
     }
   );
-  if (kanjis.length > 0) {
+  if (kanjis.length < 1) {
     throw createHttpError(404, "No hay kanjis registrados en la base de datos");
   }
   res.status(200).json(kanjis);

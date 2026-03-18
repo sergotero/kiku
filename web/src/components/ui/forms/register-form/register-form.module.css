@@ -9,6 +9,7 @@
   flex-direction: column;
   gap: 1rem;
   color: var(--white);
+  border: none;
 }
 
 .inputGroup{
@@ -17,7 +18,7 @@
 }
 
 .label{
-  width: 10%;
+  width: 15%;
 }
 
 .input{
@@ -28,14 +29,14 @@
 }
 
 .isInvalid .input {
-  border: 1px solid var(--error);
-  outline: 1px solid var(--error);
+  border: 1px solid var(--imperial-red);
+  outline: 1px solid var(--imperial-red);
 }
 
 .button{
   align-self: center;
-  background-color: var(--green);
-  color: var(--chalk-grey);
+  background-color: var(--strong-gold);
+  color: var(--paper-white);
   border: none;
   border-radius: 3px;
   font-weight: 600;
@@ -45,18 +46,20 @@
 
 .button:hover{
   cursor: pointer;
-  background-color: var(--light-green);
+  background-color: rgb(202, 169, 69);
 }
 
 .button.invalid{
   background-color: var(--light-grey);
+  color: var(--white);
   cursor: default;
 }
 
 .errors{
   font-size: 0.80rem;
   font-weight: 600;
-  color: var(--error);
-  margin-left: 10rem;
+  color: var(--imperial-red);
+  margin-left: 14rem;
   margin-bottom: 0rem;
 }
+

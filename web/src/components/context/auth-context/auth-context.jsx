@@ -1,24 +1,26 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import * as ApiService from "./../../../services/api-service.js";
 
 const AuthContext = createContext(null);
 
 function AuthContextProvider({ children }) {
-  const [user, setUser] = useState(localStorage.getItem(CURRENT_KEY) ? localStorage.getItem(CURRENT_KEY): undefined);
+  const [user, setUser] = useState(null);
+  
+  const userLogin = async (data) => {
+    const loggedUser = await ApiService.login(data.email, data.password);
+    if (loggedUser) {
+      setUser(loggedUser);
+    }
+  };
 
-  useEffect(() => {
-    const login = () => {
-      const user = UserService.login();
-      setUser(user);
-    }
-    
-    const logout = () => {
-      localStorage.removeItem(CURRENT_KEY);
-      setUser(undefined);
-    }
-  }, []);
+  const userLogout = async () => {
+    await ApiService.logout();
+    setUser(null);
+  };
+
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, userLogin, userLogout }}>
       { children }
     </AuthContext.Provider>
   );

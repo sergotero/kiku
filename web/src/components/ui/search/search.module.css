@@ -1,0 +1,32 @@
+.search {
+  display: flex;
+  align-items: stretch; /* Estira los hijos para que midan lo mismo */
+  justify-content: center;
+}
+
+.search input {
+  border: none;
+  border-radius: 250px 0px 0px 250px;
+  width: 90rem;
+  padding: 0.5rem 1rem;
+  outline: none; /* Quita el borde azul al hacer click */
+  
+  /* Esto es clave */
+  box-sizing: border-box; 
+  height: 40px; /* Definir una altura fija asegura la simetría */
+}
+
+.search i {
+  color: var(--white);
+  background-color: var(--chalk-grey);
+  border-radius: 0px 250px 250px 0px;
+  
+  /* Alineación interna de la lupa */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 0 1rem;
+  box-sizing: border-box;
+  height: 40px; /* Misma altura que el input */
+}

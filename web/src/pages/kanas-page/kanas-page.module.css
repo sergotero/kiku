@@ -1,0 +1,41 @@
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+  grid-auto-rows: auto;
+  gap: 3rem;
+  padding: 2rem;
+}
+
+.kanas {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.kanas p{
+  margin-bottom: auto;
+}
+
+.kanas table {
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  text-align: center;
+  background-color: var(--chalk-grey);
+  border: 3px solid var(--strong-gold);
+}
+
+.kanas th,.kanas tr,.kanas td {
+  text-align: center;
+  padding: 1rem;
+  color: var(--white);
+}
+
+.kanas th:hover,.kanas td:hover{
+  background-color: var(--strong-gold);
+  transition: 0.2s;
+}
+
+.kanas td:hover{
+  transform: scale(1.5);
+}

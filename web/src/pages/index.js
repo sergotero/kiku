@@ -1,3 +1,3 @@
 export { default as HomePage } from "./home-page/home-page.jsx";
-export { default as LoginPage } from "./login-page/login-page.jsx";
-export { default as RegisterPage } from "./register-page/register-page.jsx";
+export { default as AccessPage } from "./access-page/access-page.jsx";
+export { default as KanasPage } from "./kanas-page/kanas-page.jsx";

@@ -1,32 +1,59 @@
-import createHttpError from "http-errors";
 import Session from "../models/session.model.js";
+import createHttpError from "http-errors";
 
-async function checkAuth(req, res, next) {
-  
-  if (req.method === "POST" && req.path == "/api/users"){
-    next();
-    return;
-  }
-
-  if (req.method === "POST" && req.path == "/api/sessions"){
-    next();
-    return;
-  }
+async function checkSession(req) {
 
   const sessionId = req.headers.cookie?.match(/sessionId=([^;]+)/)?.[1];
-
+  
   if (!sessionId) {
     throw createHttpError(401, "Unauthorized");
   }
   
-  const session = await Session.findById(sessionId).populate("user", "-password -lists");
-
+  const session = await Session.findById(sessionId).populate("user", "_id name lastName email rol");
+  
   if (!session) {
     throw createHttpError(401, "Unauthorized");
   }
 
-  req.session = session;
-  next();
+  return session;
 }
 
-export default checkAuth;
+export async function checkAdmin(req, res, next) {
+
+  const session = await checkSession(req);
+  const { user: {rol} } = session;
+  
+  req.session = {
+    session: session.id,
+    user: {
+      id: session.user.id,
+      name: session.user.name,
+      lastName: session.user.lastName,
+      email: session.user.email
+    }};
+
+  if (rol === "Administrator") {
+    next();
+    return;
+  }
+}
+
+export async function checkUser(req, res, next) {
+  
+  const session = await checkSession(req);
+  const { user: {rol} } = session;
+  
+  req.session = {
+    session: session.id,
+    user: {
+      id: session.user.id,
+      name: session.user.name,
+      lastName: session.user.lastName,
+      email: session.user.email
+    }};
+  
+  if (rol === "User") {
+    next();
+    return;
+  }
+}

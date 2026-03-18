@@ -10,7 +10,14 @@ export async function create(req, res) {
     throw createHttpError(400, "El usuario ya existe en la base de datos");
   }
 
-  const user = await User.create(req.body);
+  const user = await User.create({
+    name: req.body.name,
+    lastName: req.body.lastName,
+    rol: "User",
+    email: req.body.email,
+    password: req.body.password,
+    lists: []
+  });
   res.status(201).json(user);
 }
 
@@ -83,7 +90,13 @@ export async function login(req, res) {
     sameSite: process.env.COOKIE_SECURE === "true" ? "none" : undefined
   });
 
-  res.status(200).json(user);
+  res.status(200).json({
+    id: user.id,
+    name: user.name,
+    lastName: user.lastName,
+    email: user.email,
+    lists: user.lists
+  });
 
 }
 

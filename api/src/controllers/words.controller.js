@@ -30,8 +30,8 @@ export async function list(req, res){
     kanjiCharacters: 1
   }).limit(100);
   
-  if (words.length > 0) {
-    throw createHttpError(404, "No hay usuarios registrados en la base de datos");
+  if (words.length < 1) {
+    throw createHttpError(404, "No hay palabras registradas en la base de datos");
   }
 
   res.status(200).json(words);

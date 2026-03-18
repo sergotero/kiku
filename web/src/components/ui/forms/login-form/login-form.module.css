@@ -18,7 +18,7 @@
 }
 
 .label{
-  width: 10%;
+  width: 15%;
 }
 
 .input{
@@ -36,10 +36,11 @@
 .button{
   align-self: center;
   background-color: var(--strong-gold);
-  color: var(--chalk-grey);
+  color: var(--paper-white);
   border: none;
   border-radius: 3px;
   font-weight: 600;
+  height: 1.75rem;
   padding: 0.2rem 1rem;
   margin-top: 1rem;
 }
@@ -51,6 +52,7 @@
 
 .button.invalid{
   background-color: var(--light-grey);
+  color: var(--white);
   cursor: default;
 }
 

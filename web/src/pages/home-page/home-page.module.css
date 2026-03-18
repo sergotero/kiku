@@ -122,11 +122,15 @@ th, tr, td {
   display: flex;
   align-items: center;
   position: relative;
-
 }
 
 .jp-line {
   font-family: "LINE Seed JP", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: var(--white);
 }

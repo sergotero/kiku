@@ -1,13 +1,13 @@
 import { Link } from "react-router";
-// import { useAuth } from "./../../context";
-// import { useState } from "react";
+import { useAuth } from "./../../context";
+import { useState } from "react";
 import SideNav from "./../sidenav/sidenav";
 import styles from "./navbar.module.css";
 import kiku from "./../../../assets/images/logo/kiku_name_logo2.png";
 
 function Navbar() {
-  // const { user, setUser } = useAuth();
-  // const [ isOpen, setIsOpen ] = useState(false);
+  const { user, setUser } = useAuth();
+  const [ isOpen, setIsOpen ] = useState(false);
 
   return (
     <header>
@@ -18,22 +18,20 @@ function Navbar() {
           </div>
         </Link>
         <ul>
-
+          {!user ?
+              (<>
               <li>
-                <Link to="/login">Acceso</Link>
+                <Link to="/access">Acceso</Link>
               </li>
-              <li>
-                <Link to="/register">Registro</Link>
-              </li>
-            {/*
-              <li className={styles.logout} onClick={() => {setIsOpen(!isOpen)}}>
+              </>)
+            :
+              (<li className={styles.logout} onClick={() => {setIsOpen(!isOpen)}}>
                 <i className="fa-solid fa-user"></i>
-              </li>
-            </>
-            */}
+              </li>)
+            }
         </ul>
       </nav>
-      {/* <SideNav open={isOpen} setIsOpen={setIsOpen} /> */}
+      <SideNav open={isOpen} setIsOpen={setIsOpen} />
     </header>
   );
 }

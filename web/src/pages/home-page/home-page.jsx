@@ -2,6 +2,7 @@ import MainLayout from "../../components/layouts/main-layout";
 import Accordion from "../../components/ui/accordion/accordion";
 import styles from "./home-page.module.css";
 import kiku from "../../assets/images/logo/kiku_paper_logo.png";
+import { Link } from "react-router";
 
 function HomePage() {
 
@@ -123,31 +124,38 @@ function HomePage() {
       </section>
       <section className={styles.options}>
         <div className={styles["option-buttons"]}>
-          <div className={styles.kanji}>
-            <div className={styles.titleGroup}>
-              <h2>漢字</h2>
-              <p>Kanji</p>
+          <Link>
+              <div className={styles.kanji}>
+                <div className={styles.titleGroup}>
+                  <h2>漢字</h2>
+                  <p>Kanji</p>
+                </div>
+              </div>
+          </Link>
+          <Link>
+            <div className={styles.kotoba}>
+              <div className={styles.titleGroup}>
+                <h2>語彙</h2>
+                <p>Vocabulario</p>
+              </div>
             </div>
-          </div>
-          <div className={styles.kotoba}>
-            <div className={styles.titleGroup}>
-              <h2>語彙</h2>
-              <p>Vocabulario</p>
+          </Link>
+          <Link>
+            <div className={styles.bunpou}>
+              <div className={styles.titleGroup}>
+                <h2>文法</h2>
+                <p>Gramática</p>
+              </div>
             </div>
-          </div>
-          <div className={styles.bunpou}>
-            <div className={styles.titleGroup}>
-              <h2>文法</h2>
-              <p>Gramática</p>
+          </Link>
+          <Link to={"/kanas"}>
+            <div className={styles.kanas}>
+              <div className={styles.titleGroup}>
+                <h2>カナ</h2>
+                <p>Silabarios</p>
+              </div>
             </div>
-            <img src="" alt="" />
-          </div>
-          <div className={styles.kanas}>
-            <div className={styles.titleGroup}>
-              <h2>カナ</h2>
-              <p>Silabarios</p>
-            </div>
-          </div>
+          </Link>
         </div>
       </section>
     </MainLayout>
