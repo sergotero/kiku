@@ -91,10 +91,12 @@ function HomePage() {
           </p>
           <table>
             <thead>
-              <th>Palabra</th>
-              <th>Lectura</th>
-              <th>Significado</th>
-              <th>Simbolismo</th>
+              <tr>
+                <th>Palabra</th>
+                <th>Lectura</th>
+                <th>Significado</th>
+                <th>Simbolismo</th>
+              </tr>
             </thead>
             <tbody>
               <tr>
@@ -124,7 +126,7 @@ function HomePage() {
       </section>
       <section className={styles.options}>
         <div className={styles["option-buttons"]}>
-          <Link>
+          <Link to={"/dictionary?type=kanji"}>
               <div className={styles.kanji}>
                 <div className={styles.titleGroup}>
                   <h2>漢字</h2>
@@ -132,7 +134,7 @@ function HomePage() {
                 </div>
               </div>
           </Link>
-          <Link>
+          <Link to={"/dictionary?type=word"}>
             <div className={styles.kotoba}>
               <div className={styles.titleGroup}>
                 <h2>語彙</h2>

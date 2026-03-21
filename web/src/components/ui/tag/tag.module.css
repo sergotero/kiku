@@ -1,0 +1,20 @@
+.tags{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--strong-gold);
+  border-radius: 10px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.9rem;
+}
+
+.tags:hover{
+  background-color: rgb(137, 56, 153);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.selected{
+  background-color: rgb(137, 56, 153);
+  color: var(--white);
+}

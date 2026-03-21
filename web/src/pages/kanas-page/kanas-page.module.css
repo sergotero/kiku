@@ -1,9 +1,12 @@
 .grid{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
-  grid-auto-rows: auto;
   gap: 3rem;
   padding: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  grid-template-areas: 
+  "hiragana katakana dakuon"
+  "yoon yoon sokuon";
 }
 
 .kanas {
@@ -38,4 +41,32 @@
 
 .kanas td:hover{
   transform: scale(1.5);
+}
+
+.hiragana {
+  grid-area: hiragana;
+}
+
+.katakana {
+  grid-area: katakana;
+}
+
+.dakuon {
+  grid-area: dakuon;
+}
+
+.yoon {
+  grid-area: yoon;
+}
+
+.yoon tr, .yoon th, .yoon td {
+  font-size: 0.8rem;
+}
+
+.sokuon {
+  grid-area: sokuon;
+}
+
+.sokuon h2 {
+  margin-bottom: 1rem;
 }

@@ -1,0 +1,14 @@
+.grammar-cat{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.2rem 0.5rem 0rem 0.5rem;
+}
+
+.results{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}

@@ -1,0 +1,95 @@
+.word-card{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(30px, 1fr));
+  grid-template-rows: repeat(4, minmax(30px, 1fr));
+  grid-template-areas: 
+  "kana info info info"
+  "kana info info info"
+  "kana info info info"
+  "kana info info info";
+  /* align-items: start;
+  justify-content: center; */
+  background: var(--chalk-grey);
+  border-radius: 15px;
+}
+
+.header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px dotted rgba(178, 148, 60, 0.575);
+  grid-area: kana;
+  
+}
+
+.word-info{
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: subgrid;
+  grid-area: info;
+  grid-template-areas: 
+  "english english english english english english"
+  "english english english english english english"
+  "english english english english english english"
+  "spanish spanish spanish spanish spanish spanish"
+  "spanish spanish spanish spanish spanish spanish"
+  "spanish spanish spanish spanish spanish spanish";
+
+}
+
+.kanji {
+  margin-top: 0rem;
+  padding: 0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.kana-only{
+  margin: auto;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.reading {
+  color: var(--light-grey);
+  font-size: 0.8rem;
+  margin-bottom: auto;
+}
+
+.english, .spanish {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 0.9rem;
+  padding: 0rem 2rem 0rem 0.5rem;
+}
+
+.english span, .spanish span {
+  display: block;
+  background-color: rgb(137, 56, 153);
+  border-radius: 5px;
+  padding: 0.2rem;
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.english{
+  grid-area: english;
+  border-bottom: 1px dotted rgba(178, 148, 60, 0.575);
+}
+
+.spanish {
+  grid-area: spanish;
+}
+
+.details{
+  margin: 0.2rem 0.2rem 0.5rem 0.2rem;
+  padding: 0.2rem;
+  background-color: var(--strong-gold);
+  border: none;
+  color: var(--chalk-grey);
+  border-radius: 5px;
+}

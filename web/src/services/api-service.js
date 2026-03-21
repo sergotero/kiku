@@ -24,8 +24,15 @@ export function logout() {
   return http.delete("/sessions");
 }
 
-//--- Kanas --------------------
+// --- Words ---------------
 
-export function getKanas(){
-  return http.get("/kanas");
+export function listWords(queryParams) {
+  const { category } = queryParams;
+  const query = [];
+  for (const cat of category) {
+    query.push(`category=${cat}`);
+  }
+  const finalQuery = query.join("&");
+
+  return http.get(`/words?${finalQuery}`);
 }

@@ -1,0 +1,1 @@
+export { default as WordCard } from "./word-card/word-card.jsx";

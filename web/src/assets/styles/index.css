@@ -1,10 +1,15 @@
+@font-face {
+  font-family: "KanjiStrokeOrders";
+  src: url("/web/src/assets/fonts/KanjiStrokeOrders_v4.005.ttf");
+}
+
 :root {
   /* Fonts */
   font-family: "Lato", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-    /* Dark theme */
+  /* Dark theme */
   color: rgba(255, 255, 255, 0.87);
   background-color: var(--smoke-grey);
   
@@ -46,7 +51,7 @@
   margin: 0px;
   padding: 0px;
   scrollbar-gutter: stable;
-  scrollbar-width: none;
+  scrollbar-width: thin;
 }
 
 /* Japanese Fonts */
