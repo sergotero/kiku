@@ -20,14 +20,34 @@ function Navbar() {
         <ul>
           {!user ?
               (<>
-              <li>
-                <Link to="/access">Acceso</Link>
-              </li>
+                <li>
+                  <Link to="/">Inicio</Link>
+                </li>
+                <li>
+                  <Link to="/dictionary?type=word">Diccionario</Link>
+                </li>
+                <li>
+                  <Link to="/kanas">Kanas</Link>
+                </li>
+                <li>
+                  <Link to="/access">Acceso</Link>
+                </li>
               </>)
             :
-              (<li className={styles.logout} onClick={() => {setIsOpen(!isOpen)}}>
-                <i className="fa-solid fa-user"></i>
-              </li>)
+              (<>
+                <li>
+                  <Link to="/">Inicio</Link>
+                </li>
+                <li>
+                  <Link to="/dictionary?type=word">Diccionario</Link>
+                </li>
+                <li>
+                  <Link to="/kanas">Kanas</Link>
+                </li>
+                <li className={styles.logout} onClick={() => {setIsOpen(!isOpen)}}>
+                  <i className="fa-solid fa-user"></i>
+                </li>
+              </>)
             }
         </ul>
       </nav>

@@ -12,3 +12,26 @@
   gap: 1rem;
   padding: 1rem;
 }
+
+.buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.buttons button {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background: linear-gradient(0deg,rgb(179, 149, 61) 0%, rgba(235, 196, 82, 1) 100%);
+  border: 1px solid rgb(126, 102, 29);
+  color: var(--chalk-grey);
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 7rem;
+}
+
+button:disabled{
+  background: linear-gradient(0deg, rgb(88, 88, 88) 0%, var(--light-grey) 100%);
+  border: 1px solid rgb(26, 24, 21);
+}

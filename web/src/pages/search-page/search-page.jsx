@@ -2,80 +2,156 @@ import styles from "./search-page.module.css";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import wordCategories from "../../data/word-categories.js";
+import kanjiCat from "../../data/kanji-categories.js";
 import SearchLayout from "./../../components/layouts/search-layout.jsx";
 import Search from "./../../components/ui/search/search.jsx";
 import Tag from "../../components/ui/tag/tag.jsx";
 import * as ApiService from "./../../services/api-service.js";
-import { WordCard } from "../../components/ui/cards/index.js";
+import { KanjiCard, WordCard } from "../../components/ui/cards/index.js";
 
 function SearchPage() {
   
   const [ queryParams, setQueryParams ] = useSearchParams();
   const [ searchType, setSearchType] = useState(queryParams.get("type"));
   const [ searchValue, setSearchValue ] = useState("");
+  const [ searchResult, setSearchResult] = useState([]);
   const [ grammarCategories, setGrammarCategories ] = useState([]);
+  const [ kanjiCategories, setKanjiCategories ] = useState([]);
   const [ grammarTags, setGrammarTags ] = useState({});
   const [ selectedCategory, setSelectedCategory ] = useState("");
+  const [ selectedKanjiCategory, setSelectedKanjiCategory ] = useState("");
   const [ wordList, setWordList ] = useState([]);
+  const [ kanjiList, setKanjiList ] = useState([]);
+  const [ page, setPage ] = useState(0);
 
 
   const handleOnChange = (event) => {
     setSearchValue(event.target.value);
+    setSelectedCategory("");
+    setSelectedKanjiCategory("");
+    setQueryParams({type: searchType, term: searchValue, page: page});
+  }
+
+  const handleOnEnter = async (event) => {
+    if (event.key === "Enter") {
+      setSelectedCategory("");
+      setSelectedKanjiCategory("");
+      setWordList([]);
+      setKanjiList([]);
+      setQueryParams({type: searchType, term: searchValue, page: page});
+
+      if (searchType === "kanji"){
+        const search = await ApiService.listKanjis({type: searchType, term: searchValue, page: page});
+        setSearchResult(search);
+        
+      }
+      if (searchType === "word"){
+        const search = await ApiService.listWords({type: searchType, term: searchValue, page: page});
+        setSearchResult(search);
+      }
+    }
   }
 
   const handleSelection = (category) => {
-    setSelectedCategory(category);
-    setQueryParams({type: searchType, category: selectedCategory});
+    if (searchType === "word") {
+      setSearchResult([]);
+      setSelectedCategory(category);
+      setQueryParams({type: searchType, category: selectedCategory});
+    }
+
+    if (searchType === "kanji") {
+      setSearchResult([]);
+      setSelectedKanjiCategory(category);
+      setQueryParams({ type: searchType, category: selectedKanjiCategory});
+    }
   }
 
   const handleSearchType = (newType) => {
     setSearchType(newType);
     setQueryParams({type: newType});
+    setKanjiList([]);
+    setWordList([]);
+    setSelectedKanjiCategory("");
+    setSelectedCategory("");
   }
-
   
   useEffect(() => {
-    const { categories, tags } = orderCategories(wordCategories);
+    const { categories, tags } = orderWordCategories(wordCategories);
     setGrammarCategories(categories);
     setGrammarTags(tags);
+    const kanjiTags = orderKanjiCategories(kanjiCat);
+    setKanjiCategories(kanjiTags);
   }, []);
   
   useEffect(() => {
-    const fetch = async() => {
-      const type = queryParams.get("type");
-      if(type === "word") {
-        const tags = grammarTags.get(selectedCategory);
-        if (tags !== "undefined") {
-          setQueryParams({type: searchType, category: tags});
-          const words = await ApiService.listWords({type: searchType, category: tags});
-          setWordList(words);
+    if (searchValue !== "") {
+      const fetch = async() => {
+        const type = queryParams.get("type");
+        if (type === "word") {
+          const tags = grammarTags.get(selectedCategory);
+          if (selectedCategory) {
+            setQueryParams({type: searchType, category: tags, page});
+            const words = await ApiService.listWords({type: searchType, page: page, category: tags});
+            setWordList(words);
+          }
+        }
+  
+        if (type === "kanji") {
+          if (selectedKanjiCategory) {
+            setQueryParams({type: searchType, category: selectedKanjiCategory, page});
+            const kanjis = await ApiService.listKanjis({type: searchType, page: page, category: selectedKanjiCategory});
+            setKanjiList(kanjis);
+          }
         }
       }
+      fetch();
     }
-    fetch();
-  }, [selectedCategory, queryParams]);
+  }, [selectedCategory, selectedKanjiCategory, queryParams, page]);
   
   return (
     <SearchLayout>
       <div className={styles["grammar-cat"]}>
-        {searchType === "word" &&
-        grammarCategories?.map( (cat) =>
+        {searchType === "word"? 
+        (grammarCategories?.map( (cat) =>
           <Tag
             key={cat}
             selectedOption={selectedCategory}
             handleSelection={handleSelection}
-          >{cat}</Tag>)}
+          >{cat}</Tag>)) :
+          
+        (kanjiCategories?.map( (cat) =>
+          <Tag
+            key={cat}
+            selectedOption={selectedKanjiCategory}
+            handleSelection={handleSelection}
+          >{cat}</Tag>)) 
+        }
       </div>
       <Search 
         type={searchType} 
         search={searchValue} 
         handleSearchType={handleSearchType} 
         handleOnChange={handleOnChange}
+        handleOnEnter={handleOnEnter}
       />
       <div className={styles.results}>
         {wordList?.map((word) => {
           return <WordCard key={word.id} term={word}/>
         })}
+        {kanjiList?.map((kanji) => {
+          return <KanjiCard key={kanji.id} term={kanji}/>
+          // return <pre>{JSON.stringify(kanji, null, 2)}</pre>
+        })}
+        {searchType === "kanji" && searchResult?.map((kanji) => {
+          return <KanjiCard key={kanji.id} term={kanji} />
+        })}
+        {searchType === "word" && searchResult?.map((word) => {
+          return <WordCard key={word.id} term={word} />
+        })}
+      </div>
+      <div className={styles.buttons}>
+        <button type="button" onClick={() => {setPage(page - 1)}} disabled={page === 0? true : false}><i class="fa-solid fa-angle-left"></i> Anterior</button>
+        <button type="button" onClick={() => {setPage(page + 1)}}>Siguiente <i class="fa-solid fa-angle-right"></i></button>
       </div>
     </SearchLayout>
   );
@@ -85,8 +161,33 @@ export default SearchPage;
 
 
 
+function orderKanjiCategories(categories) {
+  const newCategories = [];
+  
+  for (const key in categories) {
+    const element = categories[key];
+    if (!Array.isArray(element)) {
+      for (const k in element) {
+        const itemArray = element[k];
+        for (let i = 0; i < itemArray.length; i++) {
+        const tag = itemArray[i].tag;
+        newCategories.push(tag);
+      }
+      }
+    }
+    
+    if (Array.isArray(element)) {
+      for (let i = 0; i < element.length; i++) {
+        const tag = element[i].tag;
+        newCategories.push(tag);
+      }
+    }
+  }
+  return newCategories;
+}
 
-function orderCategories(categories) {
+
+function orderWordCategories(categories) {
   const orderedCategories = [];
   const tags = new Map();
     for (const category in categories) {

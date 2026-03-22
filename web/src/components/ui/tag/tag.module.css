@@ -3,9 +3,12 @@
   align-items: center;
   justify-content: center;
   background-color: var(--strong-gold);
+  /* color: var(--chalk-grey); */
   border-radius: 10px;
   padding: 0.2rem 0.5rem;
   font-size: 0.9rem;
+  /* background: linear-gradient(0deg,rgba(156, 130, 53, 1) 0%, rgba(235, 196, 82, 1) 100%);
+  box-shadow: 1px 1px 2px var(--chalk-grey); */
 }
 
 .tags:hover{

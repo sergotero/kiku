@@ -20,19 +20,22 @@ export async function create(req, res){
 }
 
 export async function list(req, res){
-  const { category } = req.query;
+  const { page, category, term } = req.query;
+  const offset = 12;
+  const skip = page * offset;
   
   const criterial = {};
   
   if (category) criterial["senses.partOfSpeech.code_XML"] = category;
-  
+  if (term) criterial["$or"] = [{searchForms: term}, {romaji: term}];
+
   const words = await Word.find(criterial, {
     "word.text": 1,
     "word.info": 1,
     "readings.text": 1,
     "senses.glosses": 1,
     kanjiCharacters: 1
-  }).limit(10);
+  }).limit(offset).skip(skip);
   
   if (words.length < 1) {
     throw createHttpError(404, "No hay palabras registradas en la base de datos");

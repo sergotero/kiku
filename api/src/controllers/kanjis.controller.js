@@ -23,21 +23,39 @@ export async function create(req, res) {
 }
 
 export async function list(req, res) {
-  const kanjis = await Kanji.find({},{
+  const { page, category, term } = req.query;
+  const offset = 12;
+  const skip = page * offset;
+  
+  const criterial = {};
+
+  if (category) {
+    if (category.includes("JLPT")) criterial["classification.jlptLevel"] = parseInt(category.slice(4));
+    if (category.includes("grado")) criterial["classification.gradeLevel"] = parseInt(category.slice(6));
+    if (category === "hyougaiji") criterial["classification.gradeLevel"] = null;
+    if (category.includes("top")) criterial["classification.frequencyRank"] = { $lte: parseInt(category.slice(4))};
+  }
+
+  if (term) {
+    criterial["search"] = term;
+  }
+  
+  console.log(criterial);
+  const kanjis = await Kanji.find(criterial,{
       kanji: 1,
       classification: 1,
       strokes: 1,
       readings: 1,
       "meanings.en": 1,
       "meanings.es": 1,
-      "radicals.components": 1
-    }
-  );
+    }).limit(offset).skip(skip);
+    
   if (kanjis.length < 1) {
     throw createHttpError(404, "No hay kanjis registrados en la base de datos");
   }
   res.status(200).json(kanjis);
 }
+
 
 export async function detail(req, res) {
   const {id} = req.params;

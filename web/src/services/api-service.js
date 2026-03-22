@@ -27,12 +27,11 @@ export function logout() {
 // --- Words ---------------
 
 export function listWords(queryParams) {
-  const { category } = queryParams;
-  const query = [];
-  for (const cat of category) {
-    query.push(`category=${cat}`);
-  }
-  const finalQuery = query.join("&");
+  return http.get(`/words`, { params: queryParams, paramsSerializer: { indexes: null } });
+}
 
-  return http.get(`/words?${finalQuery}`);
+// --- Kanjis --------------------
+
+export function listKanjis(queryParams){
+  return http.get("/kanjis", { params: queryParams, paramsSerializer: { indexes: null } });
 }
