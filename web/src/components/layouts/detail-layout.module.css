@@ -1,0 +1,12 @@
+.grid{
+  display:grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: minmax(200px, 1fr);
+  grid-auto-rows: auto;
+  grid-template-areas: 
+  ". term read read read ."
+  ". meaning svg svg svg ."
+  ". words words words words .";
+  gap: 1rem;
+  padding: 1rem;
+}

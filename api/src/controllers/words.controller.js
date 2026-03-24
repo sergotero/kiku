@@ -20,7 +20,7 @@ export async function create(req, res){
 }
 
 export async function list(req, res){
-  const { page, category, term } = req.query;
+  const { page, category, term, example } = req.query;
   const offset = 12;
   const skip = page * offset;
   
@@ -28,6 +28,7 @@ export async function list(req, res){
   
   if (category) criterial["senses.partOfSpeech.code_XML"] = category;
   if (term) criterial["$or"] = [{searchForms: term}, {romaji: term}];
+  if (example) criterial["kanjiCharacters"] = example;
 
   const words = await Word.find(criterial, {
     "word.text": 1,

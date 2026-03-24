@@ -1,5 +1,6 @@
 import createHttpError from "http-errors";
 import Kanji from "../models/kanji.model.js";
+import Stroke from "../models/stroke.model.js";
 
 export async function create(req, res) {
   const kanji = req.body;
@@ -12,7 +13,6 @@ export async function create(req, res) {
       "meanings.es": 1,
       "radicals.components": 1
     });
-    console.log("Check: ", kanjiCheck);
     
   if(kanjiCheck.length > 0) {
     res.status(400).json( {message: "El kanji ya existe en la base de datos"} );
@@ -40,7 +40,6 @@ export async function list(req, res) {
     criterial["search"] = term;
   }
   
-  console.log(criterial);
   const kanjis = await Kanji.find(criterial,{
       kanji: 1,
       classification: 1,
@@ -60,7 +59,16 @@ export async function list(req, res) {
 export async function detail(req, res) {
   const {id} = req.params;
   
-  const kanji = await Kanji.findById(id);
+  const kanji = await Kanji.findById(id,{
+    kanji: 1,
+    classification: 1,
+    strokes: 1,
+    "readings.onyomi": 1,
+    "readings.kunyomi": 1,
+    "readings.nanori": 1,
+    "meanings.en": 1,
+    "meanings.es": 1
+  }).populate("strokes");
   if (!kanji) {
     throw createHttpError(404, "Este kanji no existe en la base de datos");
   }

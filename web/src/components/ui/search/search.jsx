@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function Search({ type, search, handleOnChange, handleSearchType, handleOnEnter }) {
 
-  const [searchType, setSearchType] = useState(type);
+  const [searchType = "", setSearchType] = useState(type);
   const updateType = (event) => {
     handleSearchType(event.target.value);
     setSearchType(event.target.value);

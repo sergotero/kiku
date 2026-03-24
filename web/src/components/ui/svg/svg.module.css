@@ -1,0 +1,23 @@
+.kanjiSvg {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  background-color: var(--paper-white);
+  height: 75px;
+  width: 75px;
+}
+
+.activeStroke {
+  stroke: var(--imperial-red);
+}
+
+.oldStroke {
+  stroke: var(--chalk-grey);
+}
+
+.guidelines path {
+  stroke: #b3b3b385; 
+  stroke-width: 1px; 
+  stroke-dasharray: 4 4;
+}

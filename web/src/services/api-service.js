@@ -30,8 +30,16 @@ export function listWords(queryParams) {
   return http.get(`/words`, { params: queryParams, paramsSerializer: { indexes: null } });
 }
 
+export function getWordDetail(id) {
+  return http.get(`/words/${id}`);
+}
+
 // --- Kanjis --------------------
 
 export function listKanjis(queryParams){
   return http.get("/kanjis", { params: queryParams, paramsSerializer: { indexes: null } });
+}
+
+export function getKanjiDetail(id) {
+  return http.get(`/kanjis/${id}`);
 }

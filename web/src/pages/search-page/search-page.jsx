@@ -18,7 +18,7 @@ function SearchPage() {
   const [ grammarCategories, setGrammarCategories ] = useState([]);
   const [ kanjiCategories, setKanjiCategories ] = useState([]);
   const [ grammarTags, setGrammarTags ] = useState({});
-  const [ selectedCategory, setSelectedCategory ] = useState("");
+  const [ selectedWordCategory, setSelectedWordCategory ] = useState("");
   const [ selectedKanjiCategory, setSelectedKanjiCategory ] = useState("");
   const [ wordList, setWordList ] = useState([]);
   const [ kanjiList, setKanjiList ] = useState([]);
@@ -27,14 +27,12 @@ function SearchPage() {
 
   const handleOnChange = (event) => {
     setSearchValue(event.target.value);
-    setSelectedCategory("");
-    setSelectedKanjiCategory("");
     setQueryParams({type: searchType, term: searchValue, page: page});
   }
 
   const handleOnEnter = async (event) => {
     if (event.key === "Enter") {
-      setSelectedCategory("");
+      setSelectedWordCategory("");
       setSelectedKanjiCategory("");
       setWordList([]);
       setKanjiList([]);
@@ -53,26 +51,23 @@ function SearchPage() {
   }
 
   const handleSelection = (category) => {
+    setSearchResult([]);
     if (searchType === "word") {
-      setSearchResult([]);
-      setSelectedCategory(category);
-      setQueryParams({type: searchType, category: selectedCategory});
-    }
-
-    if (searchType === "kanji") {
-      setSearchResult([]);
+      setSelectedWordCategory(category);
+      setQueryParams({type: searchType, category: category});
+    } else if (searchType === "kanji") {
       setSelectedKanjiCategory(category);
-      setQueryParams({ type: searchType, category: selectedKanjiCategory});
+      setQueryParams({ type: searchType, category: category});
     }
   }
 
   const handleSearchType = (newType) => {
-    setSearchType(newType);
-    setQueryParams({type: newType});
     setKanjiList([]);
     setWordList([]);
     setSelectedKanjiCategory("");
-    setSelectedCategory("");
+    setSelectedWordCategory("");
+    setSearchType(newType);
+    setQueryParams({type: newType});
   }
   
   useEffect(() => {
@@ -84,12 +79,12 @@ function SearchPage() {
   }, []);
   
   useEffect(() => {
-    if (searchValue !== "") {
+    if (searchValue === "") {
       const fetch = async() => {
         const type = queryParams.get("type");
         if (type === "word") {
-          const tags = grammarTags.get(selectedCategory);
-          if (selectedCategory) {
+          const tags = grammarTags.get(selectedWordCategory);
+          if (selectedWordCategory) {
             setQueryParams({type: searchType, category: tags, page});
             const words = await ApiService.listWords({type: searchType, page: page, category: tags});
             setWordList(words);
@@ -106,7 +101,7 @@ function SearchPage() {
       }
       fetch();
     }
-  }, [selectedCategory, selectedKanjiCategory, queryParams, page]);
+  }, [selectedWordCategory, selectedKanjiCategory, page]);
   
   return (
     <SearchLayout>
@@ -115,7 +110,7 @@ function SearchPage() {
         (grammarCategories?.map( (cat) =>
           <Tag
             key={cat}
-            selectedOption={selectedCategory}
+            selectedOption={selectedWordCategory}
             handleSelection={handleSelection}
           >{cat}</Tag>)) :
           
@@ -140,7 +135,6 @@ function SearchPage() {
         })}
         {kanjiList?.map((kanji) => {
           return <KanjiCard key={kanji.id} term={kanji}/>
-          // return <pre>{JSON.stringify(kanji, null, 2)}</pre>
         })}
         {searchType === "kanji" && searchResult?.map((kanji) => {
           return <KanjiCard key={kanji.id} term={kanji} />
@@ -150,8 +144,8 @@ function SearchPage() {
         })}
       </div>
       <div className={styles.buttons}>
-        <button type="button" onClick={() => {setPage(page - 1)}} disabled={page === 0? true : false}><i class="fa-solid fa-angle-left"></i> Anterior</button>
-        <button type="button" onClick={() => {setPage(page + 1)}}>Siguiente <i class="fa-solid fa-angle-right"></i></button>
+        <button type="button" onClick={() => {setPage(page - 1)}} disabled={page === 0? true : false}><i className="fa-solid fa-angle-left"></i> Anterior</button>
+        <button type="button" onClick={() => {setPage(page + 1)}}>Siguiente <i className="fa-solid fa-angle-right"></i></button>
       </div>
     </SearchLayout>
   );
