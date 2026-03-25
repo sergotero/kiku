@@ -116,24 +116,24 @@
   min-width: 7rem;
 }
 
-button:nth-child(1){
-  background: linear-gradient(180deg,rgba(253, 29, 29, 1) 0%, rgba(117, 0, 0, 1) 100%);
+.options button:nth-child(1){
+  /* background: linear-gradient(180deg,rgba(253, 29, 29, 1) 0%, rgba(117, 0, 0, 1) 100%); */
+  background: linear-gradient(0deg,rgb(27, 133, 110) 0%, rgb(82, 225, 235) 100%);
   color: var(--white);
 }
 
-button:nth-child(2){
-  background: linear-gradient(0deg,rgb(0, 31, 36) 0%, rgba(0, 212, 255, 1) 100%);
+.options button:nth-child(2){
+  background: linear-gradient(0deg,rgb(179, 149, 61) 0%, rgba(235, 196, 82, 1) 100%);
   color: var(--white);
 }
 
 .report, .add-list {
   border: none;
-  transition: transform 0.1s, filter 0.2s;
+  transition: filter 0.2s;
 }
 
 .report:hover, .add-list:hover {
   filter: brightness(1.1);
-  transform: translateY(-1px);
 }
 
 .svg{

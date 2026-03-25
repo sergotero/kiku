@@ -1,0 +1,93 @@
+.term {
+  grid-area: term;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--chalk-grey);
+  color: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.term h1 {
+  font-size: 4rem; 
+  margin: 0;
+}
+
+/* Lecturas y Botones superiores */
+.readings {
+  grid-area: read;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.classInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--chalk-grey);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.readingDisplay {
+  font-size: 2rem;
+  color: var(--strong-gold);
+  font-weight: bold;
+}
+
+/* Sección de Acepciones (Senses) */
+.senses {
+  grid-area: senses;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.senseCard {
+  background-color: var(--chalk-grey);
+  padding: 1.5rem;
+}
+
+.posTags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.posBadge {
+  font-size: 0.7rem;
+  background-color: var(--light-gold);
+  color: var(--white);
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+}
+
+/* Sección de Kanjis Relacionados (Footer) */
+.kanjisSection {
+  grid-area: kanjis;
+  background-color: var(--chalk-grey);
+  padding: 1.5rem;
+  border-radius: 4px;
+  color: var(--white);
+}
+
+.kanjiGrid {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.kanjiBox {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--light-gold);
+  color: var(--strong-gold);
+  font-size: 1.5rem;
+  cursor: pointer;
+}

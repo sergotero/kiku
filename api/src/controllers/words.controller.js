@@ -3,7 +3,7 @@ import Word from "../models/word.model.js";
 
 
 export async function create(req, res){
-  
+
   const checkWord = await Word.findOne({
     $or: [
       {searchForms: req.body.word[0].text},
@@ -55,7 +55,7 @@ export async function detail(req, res){
     "senses.fields": 1,
     "senses.glosses": 1,
     kanjiCharacters: 1
-  });
+  }).populate("kanjiCharacters","kanji");
 
   if(!word) {
     throw createHttpError(404, "La palabra no se encuentra en la base de datos");

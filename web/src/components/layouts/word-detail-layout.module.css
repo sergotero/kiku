@@ -1,0 +1,24 @@
+/* .grid{
+  display:grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: minmax(200px, 1fr);
+  grid-auto-rows: auto;
+  grid-template-areas: 
+  ". term cat cat cat ."
+  ". term def def def .";
+  gap: 1rem;
+  padding: 1rem;
+} */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: auto;
+  grid-template-areas: 
+    ". term term read read ."
+    ". info info info info ."
+    ". senses senses senses senses ."
+    ". kanjis kanjis kanjis kanjis .";
+  gap: 1.5rem;
+  padding: 2rem;
+}
