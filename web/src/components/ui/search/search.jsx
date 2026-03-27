@@ -1,9 +1,7 @@
 import styles from "./search.module.css";
-import { useState } from "react";
 
 function Search({ type, search, handleOnChange, handleSearchType, handleOnEnter }) {
 
-  const [searchType = "", setSearchType] = useState(type);
   const updateType = (event) => {
     handleSearchType(event.target.value);
     setSearchType(event.target.value);
@@ -11,7 +9,7 @@ function Search({ type, search, handleOnChange, handleSearchType, handleOnEnter 
 
   return (
     <div className={styles.search}>
-      <select name="searchType" id="searchType" value={searchType} onChange={updateType}>
+      <select name="searchType" id="searchType" value={type} onChange={updateType}>
         <option value="kanji">Kanji</option>
         <option value="word">Palabra</option>
       </select>

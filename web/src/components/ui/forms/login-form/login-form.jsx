@@ -11,7 +11,7 @@ const defaultValues = {
   mode: "all",
 };
 
-function LoginForm(){
+function LoginForm() {
   const navigate = useNavigate();
   const { userLogin } = useAuth();
 
@@ -33,7 +33,7 @@ function LoginForm(){
       if (status === 400) {
         const { errors } = error.response.data || {}
         Object.keys(errors).forEach((inputName) => {
-          setError(inputName, {type: "custom", message: errors[inputName]});
+          setError(inputName, { type: "custom", message: errors[inputName] });
         })
       }
     }
@@ -44,12 +44,13 @@ function LoginForm(){
       <fieldset className={styles.fieldset}>
         {/* EMAIL */}
         {errors.email && (<p className={styles.errors}>{errors.email.message}</p>)}
-        <div className={`${styles.inputGroup} ${errors.email ? styles.isInvalid: ""}`}>
+        <div className={`${styles.inputGroup} ${errors.email ? styles.isInvalid : ""}`}>
           <label className={styles.label} htmlFor="email">Email</label>
           <input
             className={styles.input}
-            {...register("email", 
-              { required: {
+            {...register("email",
+              {
+                required: {
                   value: true,
                   message: "*Se requiere un email"
                 },
@@ -66,12 +67,13 @@ function LoginForm(){
 
         {/* PASSWORD */}
         {errors.password && (<p className={styles.errors}>{errors.password.message}</p>)}
-        <div className={`${styles.inputGroup} ${errors.password ? styles.isInvalid: ""}`}>
+        <div className={`${styles.inputGroup} ${errors.password ? styles.isInvalid : ""}`}>
           <label className={styles.label} htmlFor="password">Contraseña</label>
-          <input 
+          <input
             className={styles.input}
             {...register("password",
-              { required: {
+              {
+                required: {
                   value: true,
                   message: "*Se requiere una contraseña"
                 },
@@ -94,9 +96,14 @@ function LoginForm(){
           />
         </div>
       </fieldset>
-      
+
       {/* BUTTON */}
-      <button className={`${styles.button} ${!isValid?styles.invalid:""}`} type="submit" disabled={(!isValid)? true: false}>Login</button>
+      <button
+        className={`${styles.button} ${!isValid ? styles.invalid : ""}`}
+        type="submit"
+        disabled={(!isValid) ? true : false}>
+        Login
+      </button>
     </form>
   );
 }

@@ -34,20 +34,20 @@
 }
 
 .button{
-  align-self: center;
-  background-color: var(--strong-gold);
-  color: var(--paper-white);
   border: none;
-  border-radius: 3px;
-  font-weight: 600;
-  height: 1.75rem;
-  padding: 0.2rem 1rem;
-  margin-top: 1rem;
+  align-self: center;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 7rem;
+  background: linear-gradient(0deg,rgb(179, 149, 61) 0%, rgba(235, 196, 82, 1) 100%);
+  color: var(--white);
 }
 
 .button:hover{
   cursor: pointer;
-  background-color: rgb(202, 169, 69);
+  filter: brightness(1.1);
 }
 
 .button.invalid{

@@ -48,10 +48,7 @@ export async function list(req, res) {
       "meanings.en": 1,
       "meanings.es": 1,
     }).limit(offset).skip(skip);
-    
-  if (kanjis.length < 1) {
-    throw createHttpError(404, "No hay kanjis registrados en la base de datos");
-  }
+
   res.status(200).json(kanjis);
 }
 

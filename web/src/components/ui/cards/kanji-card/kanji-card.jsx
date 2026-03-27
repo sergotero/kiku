@@ -2,6 +2,9 @@ import { useNavigate } from "react-router";
 import styles from "./kanji-card.module.css";
 
 function KanjiCard({ term }){
+  if (!term || Object.keys(term).length === 0) {
+    return <div></div>;
+  }
   const navigate = useNavigate();
   const {
     kanji,

@@ -37,10 +37,6 @@ export async function list(req, res){
     "senses.glosses": 1,
     kanjiCharacters: 1
   }).limit(offset).skip(skip);
-  
-  if (words.length < 1) {
-    throw createHttpError(404, "No hay palabras registradas en la base de datos");
-  }
 
   res.status(200).json(words);
 }

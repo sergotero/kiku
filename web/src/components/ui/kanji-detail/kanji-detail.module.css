@@ -114,6 +114,7 @@
   border-radius: 5px;
   cursor: pointer;
   min-width: 7rem;
+  border: none;
 }
 
 .options button:nth-child(1){
@@ -125,6 +126,13 @@
 .options button:nth-child(2){
   background: linear-gradient(0deg,rgb(179, 149, 61) 0%, rgba(235, 196, 82, 1) 100%);
   color: var(--white);
+}
+
+
+.options button:disabled{
+  background: var(--light-grey);
+  color: var(--white);
+  cursor: default;
 }
 
 .report, .add-list {

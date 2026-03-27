@@ -17,15 +17,9 @@ export async function list(req, res) {
   
   const criterial = {};
   
-  if (category === "radicals") {
+  const radicals = await Radical.find(criterial).limit(offset).skip(skip).populate("kanji", "kanji");
 
-    const radicals = await Radical.find(criterial).limit(offset).skip(skip).populate("kanji", "kanji");
-    if (radicals.length < 1) {
-        throw createHttpError(404, "No hay radicales registrados en la base de datos");
-    }
-    res.status(200).json(radicals);
-  }
-
+  res.status(200).json(radicals);
 }
 
 export async function detail(req, res) {

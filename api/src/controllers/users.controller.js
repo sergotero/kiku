@@ -23,9 +23,6 @@ export async function create(req, res) {
 
 export async function list(req, res) {
   const users = await User.find({});
-  if (users.length === 0) {
-    throw createHttpError(404, "No hay usuarios registrados en la base de datos");
-  }
 
   res.status(200).json(users);
 }

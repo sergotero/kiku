@@ -1,9 +1,10 @@
 import styles from "./kanji-detail.module.css";
 import Accordion from "../accordion/accordion";
-import SVG from "../svg/svg";
 import SVGGenerator from "../svg/svg";
+import { useAuth } from "../../context";
 
 function KanjiDetail({ kanji, examples }) {
+  const { user } = useAuth();
 
   if (!kanji || Object.keys(kanji).length === 0) {
     return <div></div>;
@@ -42,8 +43,18 @@ function KanjiDetail({ kanji, examples }) {
         {/* KANJI INFO */}
         <div className={styles["class-info"]}>
           <div className={styles.options}>
-            <button className={styles.report} type="button"><i className="fa-solid fa-triangle-exclamation"></i> Reportar error</button>
-            <button className={styles["add-list"]} type="button"><i className="fa-solid fa-plus"></i> Añadir a lista</button>
+            <button 
+              className={styles.report}
+              type="button"
+              disabled={user ? false : true}>
+                <i className="fa-solid fa-triangle-exclamation"></i> Reportar error
+            </button>
+            <button 
+              className={styles["add-list"]} 
+              type="button"
+              disabled={user ? false : true}>
+                <i className="fa-solid fa-plus"></i> Añadir a lista
+            </button>
           </div>
           <span className={styles.tags}>{`Grado - ${grade}`}</span>
           <span className={styles.tags}>{`JLPT - ${jlpt}`}</span>
@@ -78,10 +89,10 @@ function KanjiDetail({ kanji, examples }) {
       {/* MEANINGS */}
       <div className={styles.meanings}>
         <Accordion title={"ESPAÑOL"} open={true} name={""}>
-          {spanish.length > 0 ? spanish.join(", ") : "No disponible"}
+          {spanish.length > 0 ? spanish.join(", ") : "---"}
         </Accordion>
         <Accordion title={"ENGLISH"} open={false} name={""}>
-          {english.length > 0 ? english.join(", ") : "No disponible"}
+          {english.length > 0 ? english.join(", ") : "---"}
         </Accordion>
       </div>
       
@@ -114,11 +125,6 @@ function KanjiDetail({ kanji, examples }) {
           </tbody>
         </table>
       </div>
-      
-      {/* <details className={styles.debug}>
-        <summary>Ver JSON completo</summary>
-        <pre>{JSON.stringify(kanji, null, 2)}</pre>
-      </details> */}
     </>
   );
 }

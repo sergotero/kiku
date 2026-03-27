@@ -48,13 +48,6 @@ p{
   font-size: 1rem;
 }
 
-hr{
-  border-top: 1px dotted var(--strong-gold);
-  border-bottom: none;
-  width: 90%;
-  opacity: 1;
-}
-
 table{
   margin-top: 1.5rem;
   margin-bottom: 1rem;

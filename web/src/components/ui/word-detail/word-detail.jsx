@@ -1,9 +1,12 @@
 import { Link } from "react-router";
 import Accordion from "../accordion/accordion";
 import styles from "./word-detail.module.css";
+import { useAuth } from "../../context";
 
 function WordDetail({ word }) {
   
+  const { user } = useAuth();
+
   if (!word || Object.keys(word).length === 0) {
     return <div></div>;
   }
@@ -13,21 +16,34 @@ function WordDetail({ word }) {
       {/* AREA: TERM */}
       <div className={styles.term}>
         <h1>{word.word[0].text}</h1>
-        {word.word.length > 1 && (
-          <span style={{color: 'var(--light-grey)', fontSize: '0.9rem'}}>
+        {/* {word.word.length > 1 && (
+          <span>
             Variantes: {word.word.slice(1).map(w => w.text).join(' | ')}
           </span>
-        )}
+        )} */}
       </div>
 
       {/* AREA: READ (Top Info & Reading) */}
       <div className={styles.readings}>
         <div className={styles.classInfo}>
-          <div className={styles.readingDisplay}>
-            {word.readings.map(r => r.text).join(' / ')}
+          <div className={styles.wrapper}>
+            <div className={styles.readingDisplay}>
+              {word.readings.map(r => r.text).join(' / ')}
+            </div>
+            <div className={styles.options}>
+              <button 
+                className={styles.report}
+                disabled={user ? false : true}>
+                  <i className="fa-solid fa-plus"></i> Añadir a lista
+              </button>
+            </div>
           </div>
-          <div className={styles.options}>
-            <button className={styles.report}><i className="fa-solid fa-plus"></i> Guardar</button>
+          <hr />
+          <div className={styles.variants}>
+            <h4>Variantes</h4>
+            <p>
+              {word.word.slice(1).map(w => <span className={styles.variant}>{w.text}</span>)}
+            </p>
           </div>
         </div>
       </div>
@@ -43,9 +59,9 @@ function WordDetail({ word }) {
             </div>
             
             <Accordion title={`ACEPCIÓN ${index + 1}`} open={true}>
-              <div>
+              <div className={styles.meanings}>
                 <div>
-                  <strong >ESPAÑOL</strong>
+                  <strong>ESPAÑOL</strong>
                   <p>{sense.glosses.spa.length > 0 ? sense.glosses.spa.join(', ') : "---"}</p>
                 </div>
                 <div>
