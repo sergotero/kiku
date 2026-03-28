@@ -1,10 +1,9 @@
 import styles from "./search.module.css";
 
-function Search({ type, search, handleOnChange, handleSearchType, handleOnEnter }) {
+function Search({ type, search, handleOnChange, handleType, handleOnEnter }) {
 
   const updateType = (event) => {
-    handleSearchType(event.target.value);
-    setSearchType(event.target.value);
+    handleType(event.target.value);
   }
 
   return (

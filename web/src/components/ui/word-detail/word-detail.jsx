@@ -2,14 +2,17 @@ import styles from "./word-detail.module.css";
 import Accordion from "../accordion/accordion";
 import { Link } from "react-router";
 import { useAuth } from "../../context";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Modal from "../modal/modal.jsx";
 import ReportForm from "../forms/report-form/report-form.jsx";
+import wordCategories from "./../../../data/word-categories.js";
+import { getWordCategories } from "../../../utils/categories-generator.js";
 
 function WordDetail({ word }) {
   
   const { user } = useAuth();
   const [ modal, setModal ] = useState(false);
+  const categories = useMemo(() => getWordCategories(wordCategories));
 
   if (!word || Object.keys(word).length === 0) {
     return <div></div>;
@@ -59,9 +62,13 @@ function WordDetail({ word }) {
         {word.senses.map((sense, index) => (
           <div key={index} className={styles.senseCard}>
             <div className={styles.posTags}>
-              {sense.partOfSpeech.map((pos, i) => (
-                <span key={i} className={styles.posBadge}>{pos.label}</span>
-              ))}
+              {sense.partOfSpeech.map((pos, i) => {
+                for (const cat of categories) {
+                  if (cat.tag === pos.code_XML){
+                    return (<span key={i} className={styles.posBadge}>{cat.description}</span>)
+                  }
+                }
+              })}
             </div>
             
             <Accordion title={`ACEPCIÓN ${index + 1}`} open={true}>

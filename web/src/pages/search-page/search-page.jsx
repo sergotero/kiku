@@ -33,8 +33,6 @@ function SearchPage() {
 
   const handleOnEnter = async (event) => {
     if (event.key === "Enter") {
-      setWordList([]);
-      setKanjiList([]);
       setQueryParams({ type, term: searchValue, page });
 
       if (type === "kanji") {
@@ -54,7 +52,7 @@ function SearchPage() {
     setQueryParams({ type, category, page });
   }
 
-  const handleSearchType = (type) => {
+  const handleType = (type) => {
     setResult([]);
     setQueryParams({ type });
   }
@@ -101,7 +99,7 @@ function SearchPage() {
       <Search
         type={type}
         search={searchValue}
-        handleSearchType={handleSearchType}
+        handleType={handleType}
         handleOnChange={handleOnChange}
         handleOnEnter={handleOnEnter}
       />
@@ -113,19 +111,21 @@ function SearchPage() {
           return <WordCard key={word.id} term={word} />
         })}
       </div>
-      <div className={styles.buttons}>
-        <button
-          type="button"
-          onClick={() => setQueryParams({ type, category, page: +page - 1 })}
-          disabled={+page === 0 ? true : false}>
-          <i className="fa-solid fa-angle-left"></i> Anterior
-        </button>
-        <button
-          type="button"
-          onClick={() => setQueryParams({ type, category, page: +page + 1 })}>
-          Siguiente <i className="fa-solid fa-angle-right"></i>
-        </button>
-      </div>
+      {result.length !== 0 && (
+        <div className={styles.buttons}>
+          <button
+            type="button"
+            onClick={() => setQueryParams({ type, category, page: +page - 1 })}
+            disabled={+page === 0 ? true : false}>
+            <i className="fa-solid fa-angle-left"></i> Anterior
+          </button>
+          <button
+            type="button"
+            onClick={() => setQueryParams({ type, category, page: +page + 1 })}>
+            Siguiente <i className="fa-solid fa-angle-right"></i>
+          </button>
+        </div>
+      )}
     </SearchLayout>
   );
 }

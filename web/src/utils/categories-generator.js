@@ -90,3 +90,14 @@ export function orderWordCategories(categories) {
 
   return { categories: orderedCategories, tags };
 }
+
+export function getWordCategories(categories){
+  const categoriesArray = [];
+  for (const cat in categories) {
+    const element = categories[cat];
+    element.forEach(element => {
+      categoriesArray.push(element);
+    });
+  }
+  return categoriesArray;
+}
