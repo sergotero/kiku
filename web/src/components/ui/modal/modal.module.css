@@ -1,0 +1,16 @@
+dialog:modal{
+  position: absolute;
+  top: calc(40% - 75px);
+  left: calc(30% - 250px);
+
+  padding: 2rem;
+  background-color: var(--chalk-grey);
+  color: var(--white);
+  border: 0;
+  border-radius: 0.5rem;
+  /* box-shadow: 0 0 0.5rem 0.25rem hsl(0 0% 0% / 10%); */
+}
+
+dialog::backdrop{
+  background: hsla(0, 0%, 0%, 0.8);
+}

@@ -2,12 +2,6 @@ import Report from "../models/report.model.js";
 import createHttpError from "http-errors";
 
 export async function create(req, res) {
-  const storedReport = await Report.findOne({item: req.body.item});
-
-  if (storedReport) {
-    throw createHttpError(400, "El informe ya existe en la base de datos");
-  }
-
   const report = await Report.create(req.body);
   res.status(201).json(report);
 }

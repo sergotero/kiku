@@ -43,3 +43,9 @@ export function listKanjis(queryParams){
 export function getKanjiDetail(id) {
   return http.get(`/kanjis/${id}`);
 }
+
+//--- Reports ----------------
+
+export function createReport(report){
+  return http.post(`/reports`, report);
+}

@@ -91,6 +91,7 @@ export async function login(req, res) {
     id: user.id,
     name: user.name,
     lastName: user.lastName,
+    rol: user.rol,
     email: user.email,
     lists: user.lists
   });

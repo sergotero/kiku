@@ -52,7 +52,7 @@ export async function checkUser(req, res, next) {
       email: session.user.email
     }};
   
-  if (rol === "User") {
+  if (rol === "User" || rol === "Administrator") {
     next();
     return;
   }

@@ -132,7 +132,12 @@ hr{
   min-width: 7rem;
 }
 
-.options button{
+.options button:nth-child(1){
+  background: linear-gradient(0deg,rgb(27, 133, 110) 0%, rgb(82, 225, 235) 100%);
+  color: var(--white);
+}
+
+.options button:nth-child(2){
   background: linear-gradient(0deg,rgb(179, 149, 61) 0%, rgba(235, 196, 82, 1) 100%);
   color: var(--white);
 }

@@ -32,11 +32,9 @@ function RegisterForm(){
         reset();
       }
     } catch (error) {
-      console.log("Error: ", error);
-      
       const { status } = error;
       if (status === 400) {
-        const { errors } = error.response?.data || {};
+        const errors = error.response?.data || {};
         Object.keys(errors).forEach((inputName) => {
           setError(inputName, {type: "custom", message: errors[inputName]});
         });

@@ -1,11 +1,15 @@
-import { Link } from "react-router";
-import Accordion from "../accordion/accordion";
 import styles from "./word-detail.module.css";
+import Accordion from "../accordion/accordion";
+import { Link } from "react-router";
 import { useAuth } from "../../context";
+import { useState } from "react";
+import Modal from "../modal/modal.jsx";
+import ReportForm from "../forms/report-form/report-form.jsx";
 
 function WordDetail({ word }) {
   
   const { user } = useAuth();
+  const [ modal, setModal ] = useState(false);
 
   if (!word || Object.keys(word).length === 0) {
     return <div></div>;
@@ -16,11 +20,6 @@ function WordDetail({ word }) {
       {/* AREA: TERM */}
       <div className={styles.term}>
         <h1>{word.word[0].text}</h1>
-        {/* {word.word.length > 1 && (
-          <span>
-            Variantes: {word.word.slice(1).map(w => w.text).join(' | ')}
-          </span>
-        )} */}
       </div>
 
       {/* AREA: READ (Top Info & Reading) */}
@@ -31,6 +30,13 @@ function WordDetail({ word }) {
               {word.readings.map(r => r.text).join(' / ')}
             </div>
             <div className={styles.options}>
+              <button 
+                className={styles.report}
+                type="button"
+                onClick={() => setModal(true)}
+                disabled={user ? false : true}>
+                  <i className="fa-solid fa-triangle-exclamation"></i> Reportar error
+              </button>
               <button 
                 className={styles.report}
                 disabled={user ? false : true}>
@@ -87,6 +93,9 @@ function WordDetail({ word }) {
           ))}
         </div>
       </div>
+      <Modal openModal={modal} closeModal={() => setModal(false)}>
+        <ReportForm setModal={setModal} />
+      </Modal>
     </>
   );
 }

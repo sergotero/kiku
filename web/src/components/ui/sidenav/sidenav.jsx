@@ -3,7 +3,7 @@ import { useAuth } from "../../context";
 import styles from "./sidenav.module.css";
 
 function SideNav({ open, setIsOpen }) {
-  const { userLogout } = useAuth();
+  const { user, userLogout } = useAuth();
   
   const handleLogOut = () => {
     //Logout within the AuthContext
@@ -13,7 +13,13 @@ function SideNav({ open, setIsOpen }) {
   return (
     <div className={`${styles.sidenav} ${open ? styles.open : ""}`}>
       <button className={styles.closebtn} onClick={() => setIsOpen(!open)} id="close" >×</button>
-      <Link to="/profile" onClick={() => setIsOpen(!open)}><i className="fa-solid fa-user"></i> Perfil</Link>
+      <Link to="/me/lists" onClick={() => setIsOpen(!open)}><i className="fa-solid fa-list"></i> Listas</Link>
+      {user?.rol === "Administrator" && (
+        <>
+          <Link to="/users" onClick={() => setIsOpen(!open)}><i className="fa-solid fa-user"></i> Usuarios</Link>
+          <Link to="/reports" onClick={() => setIsOpen(!open)}><i className="fa-solid fa-triangle-exclamation"></i> Reportes</Link>
+        </>
+      )}
       <a href="" onClick={handleLogOut}><i className="fa-solid fa-arrow-right-from-bracket"></i> Cerrar sesión</a>
     </div>
   );

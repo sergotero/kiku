@@ -50,10 +50,8 @@ function SearchPage() {
   }
 
   const handleSelection = (category) => {
-    console.log("selected cat: ", category);
     setResult([]);
     setQueryParams({ type, category, page });
-
   }
 
   const handleSearchType = (type) => {

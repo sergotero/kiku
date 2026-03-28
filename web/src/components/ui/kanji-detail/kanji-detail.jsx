@@ -2,9 +2,14 @@ import styles from "./kanji-detail.module.css";
 import Accordion from "../accordion/accordion";
 import SVGGenerator from "../svg/svg";
 import { useAuth } from "../../context";
+import Modal from "../modal/modal";
+import ReportForm from "../forms/report-form/report-form";
+import { useState } from "react";
 
 function KanjiDetail({ kanji, examples }) {
+  
   const { user } = useAuth();
+  const [ modal, setModal ] = useState(false);
 
   if (!kanji || Object.keys(kanji).length === 0) {
     return <div></div>;
@@ -46,7 +51,8 @@ function KanjiDetail({ kanji, examples }) {
             <button 
               className={styles.report}
               type="button"
-              disabled={user ? false : true}>
+              disabled={user ? false : true}
+              onClick={() => setModal(true)}>
                 <i className="fa-solid fa-triangle-exclamation"></i> Reportar error
             </button>
             <button 
@@ -125,6 +131,9 @@ function KanjiDetail({ kanji, examples }) {
           </tbody>
         </table>
       </div>
+      <Modal openModal={modal} closeModal={() => setModal(false)}>
+        <ReportForm setModal={setModal} />
+      </Modal>
     </>
   );
 }
