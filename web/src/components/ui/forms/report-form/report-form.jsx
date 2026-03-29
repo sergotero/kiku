@@ -48,7 +48,7 @@ function ReportForm({ setModal }) {
     <form className={styles.form} method="POST" onSubmit={handleSubmit(onCreateReport)}>
       <fieldset className={styles.fieldset}>
         <div className={`${styles.inputTextGroup} ${errors.reportMessage ? styles.isInvalid : ""}`}>
-          <label htmlFor="reportMessage">Escribe aquí tú mensaje. Trata de ser lo más concreto posible a la hora de identificar el error y, si es posible, aporta información para que nuestro equipo pueda valorarlo. Gracias.</label>
+          <label htmlFor="reportMessage">Escribe aquí tú mensaje. Trata de ser lo más concreto posible a la hora de identificar el error y, si es posible, aporta información sobre la corrección para que nuestro equipo pueda valorarla. Gracias.</label>
           <textarea
             {...register("reportMessage", {
               required: {

@@ -1,0 +1,855 @@
+[
+    {
+        "seion": {
+            "katakana": "ア",
+            "hiragana": "あ",
+            "romaji": "a"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "イ",
+            "hiragana": "い",
+            "romaji": "i"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ウ",
+            "hiragana": "う",
+            "romaji": "u"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "エ",
+            "hiragana": "え",
+            "romaji": "e"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "オ",
+            "hiragana": "お",
+            "romaji": "o"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "カ",
+            "hiragana": "か",
+            "romaji": "ka"
+        },
+        "dakuon": {
+            "katakana": "ガ",
+            "hiragana": "が",
+            "romaji": "ga"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "キ",
+            "hiragana": "き",
+            "romaji": "ki"
+        },
+        "dakuon": {
+            "katakana": "ギ",
+            "hiragana": "ぎ",
+            "romaji": "gi"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 4
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ク",
+            "hiragana": "く",
+            "romaji": "ku"
+        },
+        "dakuon": {
+            "katakana": "グ",
+            "hiragana": "ぐ",
+            "romaji": "gu"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ケ",
+            "hiragana": "け",
+            "romaji": "ke"
+        },
+        "dakuon": {
+            "katakana": "ゲ",
+            "hiragana": "げ",
+            "romaji": "ge"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "コ",
+            "hiragana": "こ",
+            "romaji": "ko"
+        },
+        "dakuon": {
+            "katakana": "ゴ",
+            "hiragana": "ご",
+            "romaji": "go"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "キャ",
+            "hiragana": "きゃ",
+            "romaji": "kya"
+        },
+        "dakuon": {
+            "katakana": "ギャ",
+            "hiragana": "ぎゃ",
+            "romaji": "gya"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "キュ",
+            "hiragana": "きゅ",
+            "romaji": "kyu"
+        },
+        "dakuon": {
+            "katakana": "ギュ",
+            "hiragana": "ぎゅ",
+            "romaji": "gyu"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "キョ",
+            "hiragana": "きょ",
+            "romaji": "kyo"
+        },
+        "dakuon": {
+            "katakana": "ギョ",
+            "hiragana": "ぎょ",
+            "romaji": "gyo"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "サ",
+            "hiragana": "さ",
+            "romaji": "sa"
+        },
+        "dakuon": {
+            "katakana": "ザ",
+            "hiragana": "ざ",
+            "romaji": "za"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "シ",
+            "hiragana": "し",
+            "romaji": "shi"
+        },
+        "dakuon": {
+            "katakana": "ジ",
+            "hiragana": "じ",
+            "romaji": "ji"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 1
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ス",
+            "hiragana": "す",
+            "romaji": "su"
+        },
+        "dakuon": {
+            "katakana": "ズ",
+            "hiragana": "ず",
+            "romaji": "zu"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "セ",
+            "hiragana": "せ",
+            "romaji": "se"
+        },
+        "dakuon": {
+            "katakana": "ゼ",
+            "hiragana": "ぜ",
+            "romaji": "ze"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ソ",
+            "hiragana": "そ",
+            "romaji": "so"
+        },
+        "dakuon": {
+            "katakana": "ゾ",
+            "hiragana": "ぞ",
+            "romaji": "zo"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 1
+        }
+    },
+    {
+        "seion": {
+            "katakana": "シャ",
+            "hiragana": "しゃ",
+            "romaji": "sha"
+        },
+        "dakuon": {
+            "katakana": "ジャ",
+            "hiragana": "じゃ",
+            "romaji": "ja"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "シュ",
+            "hiragana": "しゅ",
+            "romaji": "shu"
+        },
+        "dakuon": {
+            "katakana": "ジュ",
+            "hiragana": "じゅ",
+            "romaji": "ju"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ショ",
+            "hiragana": "しょ",
+            "romaji": "sho"
+        },
+        "dakuon": {
+            "katakana": "ジョ",
+            "hiragana": "じょ",
+            "romaji": "jo"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "タ",
+            "hiragana": "た",
+            "romaji": "ta"
+        },
+        "dakuon": {
+            "katakana": "ダ",
+            "hiragana": "だ",
+            "romaji": "da"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 4
+        }
+    },
+    {
+        "seion": {
+            "katakana": "チ",
+            "hiragana": "ち",
+            "romaji": "chi"
+        },
+        "dakuon": {
+            "katakana": "ヂ",
+            "hiragana": "ぢ",
+            "romaji": "dji"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ツ",
+            "hiragana": "つ",
+            "romaji": "tsu"
+        },
+        "dakuon": {
+            "katakana": "ヅ",
+            "hiragana": "づ",
+            "romaji": "dzu"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 1
+        }
+    },
+    {
+        "seion": {
+            "katakana": "テ",
+            "hiragana": "て",
+            "romaji": "te"
+        },
+        "dakuon": {
+            "katakana": "デ",
+            "hiragana": "で",
+            "romaji": "de"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 1
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ト",
+            "hiragana": "と",
+            "romaji": "to"
+        },
+        "dakuon": {
+            "katakana": "ド",
+            "hiragana": "ど",
+            "romaji": "do"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "チャ",
+            "hiragana": "ちゃ",
+            "romaji": "cha"
+        },
+        "dakuon": {
+            "katakana": "ヂャ",
+            "hiragana": "ぢゃ",
+            "romaji": "ja"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "チュ",
+            "hiragana": "ちゅ",
+            "romaji": "chu"
+        },
+        "dakuon": {
+            "katakana": "ヂュ",
+            "hiragana": "ぢゅ",
+            "romaji": "ju"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "チョ",
+            "hiragana": "ちょ",
+            "romaji": "cho"
+        },
+        "dakuon": {
+            "katakana": "ヂュ",
+            "hiragana": "ぢょ",
+            "romaji": "jo"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ナ",
+            "hiragana": "な",
+            "romaji": "na"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 4
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ニ",
+            "hiragana": "に",
+            "romaji": "ni"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ヌ",
+            "hiragana": "ぬ",
+            "romaji": "nu"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ネ",
+            "hiragana": "ね",
+            "romaji": "ne"
+        },
+        "strokes": {
+            "katakana": 4,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ノ",
+            "hiragana": "の",
+            "romaji": "no"
+        },
+        "strokes": {
+            "katakana": 1,
+            "hiragana": 1
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ニャ",
+            "hiragana": "にゃ",
+            "romaji": "nya"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ニュ",
+            "hiragana": "にゅ",
+            "romaji": "nyu"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ニョ",
+            "hiragana": "にょ",
+            "romaji": "nyo"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ハ",
+            "hiragana": "は",
+            "romaji": "ha"
+        },
+        "dakuon": {
+            "katakana": "バ",
+            "hiragana": "ば",
+            "romaji": "ba"
+        },
+        "handakuon": {
+            "katakana": "パ",
+            "hiragana": "ぱ",
+            "romaji": "pa"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ヒ",
+            "hiragana": "ひ",
+            "romaji": "hi"
+        },
+        "dakuon": {
+            "katakana": "ビ",
+            "hiragana": "び",
+            "romaji": "bi"
+        },
+        "handakuon": {
+            "katakana": "ピ",
+            "hiragana": "ぴ",
+            "romaji": "pi"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 1
+        }
+    },
+    {
+        "seion": {
+            "katakana": "フ",
+            "hiragana": "ふ",
+            "romaji": "fu"
+        },
+        "dakuon": {
+            "katakana": "ブ",
+            "hiragana": "ぶ",
+            "romaji": "bu"
+        },
+        "handakuon": {
+            "katakana": "プ",
+            "hiragana": "ぷ",
+            "romaji": "pu"
+        },
+        "strokes": {
+            "katakana": 1,
+            "hiragana": 4
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ヘ",
+            "hiragana": "へ",
+            "romaji": "he"
+        },
+        "dakuon": {
+            "katakana": "ベ",
+            "hiragana": "べ",
+            "romaji": "be"
+        },
+        "handakuon": {
+            "katakana": "ペ",
+            "hiragana": "ぺ",
+            "romaji": "pe"
+        },
+        "strokes": {
+            "katakana": 1,
+            "hiragana": 1
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ホ",
+            "hiragana": "ほ",
+            "romaji": "ho"
+        },
+        "dakuon": {
+            "katakana": "ボ",
+            "hiragana": "ぼ",
+            "romaji": "bo"
+        },
+        "handakuon": {
+            "katakana": "ポ",
+            "hiragana": "ぽ",
+            "romaji": "po"
+        },
+        "strokes": {
+            "katakana": 4,
+            "hiragana": 4
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ヒャ",
+            "hiragana": "ひゃ",
+            "romaji": "hya"
+        },
+        "dakuon": {
+            "katakana": "ビャ",
+            "hiragana": "びゃ",
+            "romaji": "bya"
+        },
+        "handakuon": {
+            "katakana": "ピャ",
+            "hiragana": "ぴゃ",
+            "romaji": "pya"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ヒュ",
+            "hiragana": "ひゅ",
+            "romaji": "hyu"
+        },
+        "dakuon": {
+            "katakana": "ビュ",
+            "hiragana": "びゅ",
+            "romaji": "byu"
+        },
+        "handakuon": {
+            "katakana": "ピュ",
+            "hiragana": "ぴゅ",
+            "romaji": "pyu"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ヒョ",
+            "hiragana": "ひょ",
+            "romaji": "hyo"
+        },
+        "dakuon": {
+            "katakana": "ビョ",
+            "hiragana": "びょ",
+            "romaji": "byo"
+        },
+        "handakuon": {
+            "katakana": "ピョ",
+            "hiragana": "ぴょ",
+            "romaji": "pyo"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "マ",
+            "hiragana": "ま",
+            "romaji": "ma"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ミ",
+            "hiragana": "み",
+            "romaji": "mi"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ム",
+            "hiragana": "む",
+            "romaji": "mu"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "メ",
+            "hiragana": "め",
+            "romaji": "me"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "モ",
+            "hiragana": "も",
+            "romaji": "mo"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ミャ",
+            "hiragana": "みゃ",
+            "romaji": "mya"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ミュ",
+            "hiragana": "みゅ",
+            "romaji": "myu"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ミョ",
+            "hiragana": "みょ",
+            "romaji": "myo"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ヤ",
+            "hiragana": "や",
+            "romaji": "ya"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ユ",
+            "hiragana": "ゆ",
+            "romaji": "yu"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ヨ",
+            "hiragana": "よ",
+            "romaji": "yo"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ラ",
+            "hiragana": "ら",
+            "romaji": "ra"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "リ",
+            "hiragana": "り",
+            "romaji": "ri"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ル",
+            "hiragana": "る",
+            "romaji": "ru"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 1
+        }
+    },
+    {
+        "seion": {
+            "katakana": "レ",
+            "hiragana": "れ",
+            "romaji": "re"
+        },
+        "strokes": {
+            "katakana": 1,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ロ",
+            "hiragana": "ろ",
+            "romaji": "ro"
+        },
+        "strokes": {
+            "katakana": 3,
+            "hiragana": 1
+        }
+    },
+    {
+        "seion": {
+            "katakana": "リャ",
+            "hiragana": "りゃ",
+            "romaji": "rya"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "リュ",
+            "hiragana": "りゅ",
+            "romaji": "ryu"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "リョ",
+            "hiragana": "りょ",
+            "romaji": "ryo"
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ワ",
+            "hiragana": "わ",
+            "romaji": "wa"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 2
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ヲ",
+            "hiragana": "を",
+            "romaji": "wo"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 3
+        }
+    },
+    {
+        "seion": {
+            "katakana": "ン",
+            "hiragana": "ん",
+            "romaji": "n"
+        },
+        "strokes": {
+            "katakana": 2,
+            "hiragana": 1
+        }
+    }
+]

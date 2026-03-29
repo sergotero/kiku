@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "node --watch --env-file development.env app.js"
+    "dev": "node --watch --env-file development.env app.js",
+    "seeds": "node --env-file production.env /datasets/seeds.js"
   },
   "keywords": [],
   "author": "Sergio Otero",
@@ -20,5 +21,8 @@
     "http-errors": "^2.0.1",
     "mongoose": "^9.2.4",
     "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "mongodb": "^7.1.0"
   }
 }
