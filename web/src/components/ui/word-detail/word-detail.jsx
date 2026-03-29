@@ -22,7 +22,7 @@ function WordDetail({ word }) {
     <>
       {/* AREA: TERM */}
       <div className={styles.term}>
-        <h1>{word.word[0].text}</h1>
+        <h1>{word.word[0]?.text ?? word.readings[0].text}</h1>
       </div>
 
       {/* AREA: READ (Top Info & Reading) */}

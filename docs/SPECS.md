@@ -175,7 +175,7 @@ During database import, the `kanji` array will be converted to **ObjectId refere
 Main script:
 
 ```
-importDictionary.js
+datasets/seeds.js
 ```
 
 This script performs the complete database integration.
@@ -190,6 +190,7 @@ The collections must be inserted in the following order:
 3. KRAD components update
 4. Radicals
 5. Words
+6. Kanas
 ```
 
 ---
@@ -280,7 +281,15 @@ kanjiCharacters: [ObjectId, ObjectId]
 
 ---
 
-# 8. Post-Import Repair Script
+## Step 6 — Insert Kanas
+
+```
+kana.json → kanas collection
+```
+
+---
+
+## Step 7 - Post-Import corrections
 
 In some cases the stroke reference may not match due to differences in:
 
@@ -296,13 +305,6 @@ Example mismatch:
 kanji.unicode.codePoint = 4e9c
 strokes.codepoint      = 04e9c
 ```
-
-Repair script:
-
-```
-fix-kanji-strokes.js
-```
-
 This script:
 
 1. Normalizes both values
@@ -311,7 +313,7 @@ This script:
 
 ---
 
-# 9. Recommended MongoDB Indexes
+# 8. Recommended MongoDB Indexes
 
 After import, create the following indexes.
 
@@ -336,7 +338,7 @@ These indexes significantly improve lookup performance for:
 
 ---
 
-# 10. Complete Update Workflow
+# 9. Complete Update Workflow
 
 When updating the dictionary datasets, run the pipeline in this order:
 
@@ -380,311 +382,135 @@ Kanjis → Strokes
 * The pipeline is designed so that **only the JSON parsing scripts need to be rerun when updating source datasets**.
 
 
-**Archivos descargados:**
+**Downloaded files:**
 
-- `JMdict_e.gz` (solo inglés)
-- `kanjidic2.xml.gz`
-- `kanjivg-20250816-all.zip`
-- `kradzip.zip`
+- `JMdict_e.gz` - [JMDict](https://jedict.com/HTML/edict_doc.html) (english only)
+- `kanjidic2.xml.gz` - [Kanjidic](https://www.edrdg.org/kanjidic/kanjd2index_legacy.html)
+- `kanjivg-20250816-all.zip` - [KanjiVG](https://github.com/KanjiVG/kanjivg/releases)
+- `kradzip.zip` - [Kradzip](https://www.edrdg.org/krad/kradinf.html)
 - `kana.json`
 
-> Descarga: [Kanjidic](https://www.edrdg.org/kanjidic/kanjd2index_legacy.html)  
-> Descarga: [JMDict](https://jedict.com/HTML/edict_doc.html)
+---
+
+## Entities
+
+Within the project, the following main entities are defined:
+
+| Entity      | Description                                     | Source         |
+| ----------- | ----------------------------------------------- | -------------- |
+| **Kanji** | Complete information for each kanji             | KANJIDIC       |
+| **Word** | Word dictionary entries                         | JMdict         |
+| **Radical** | Radicals and their classification               | radkfile       |
+| **Kana** | Syllables of the Japanese syllabary             | Internal table |
+| **Stroke** | Vector information for drawing kanji            | KanjiVG        |
 
 ---
 
-## Entidades
+### Word Entity
 
-Dentro del proyecto se definen las siguientes entidades principales:
+| Field                  | Type          | Description              | Relationship |
+| ---------------------- | ------------- | ------------------------ | ------------ |
+| id                     | number        | JMdict ID                | PK           |
+| word.text              | string        | Written form             | → Kanji      |
+| word.info              | array<string> | Orthographic information | -            |
+| word.priority          | array<string> | Frequency                | -            |
+| readings.text          | string        | Kana form                | → Kana       |
+| readings.noKanji       | boolean       | No kanji used            | -            |
+| readings.restrictedTo  | array<string> | Only for certain forms   | -            |
+| readings.info          | array<string> | Notes                    | -            |
+| readings.priority      | array<string> | Priority                 | -            |
+| senses.partOfSpeech    | array<string> | Part of speech           | -            |
+| senses.fields          | array<string> | Technical field          | -            |
+| senses.misc            | array<string> | Register                 | -            |
+| senses.dialect         | array<string> | Dialect                  | -            |
+| senses.info            | array<string> | Notes                    | -            |
+| senses.crossReferences | array<string> | References               | → Word       |
+| senses.antonyms        | array<string> | Antonyms                 | → Word       |
+| senses.loanwordSource  | array<object> | Loanword origin          | -            |
+| senses.glosses         | object        | Translations             | -            |
+| senses.examples        | array<object> | Example sentences        | -            |
 
-| Entidad     | Descripción                              | Fuente        |
-| ----------- | ---------------------------------------- | ------------- |
-| **Kanji**   | Información completa de cada kanji       | KANJIDIC      |
-| **Word**    | Entradas del diccionario de palabras     | JMdict        |
-| **Radical** | Radicales y su clasificación             | radkfile      |
-| **Kana**    | Sílabas del silabario japonés            | tabla interna |
-| **Stroke**  | Información vectorial para dibujar kanji | KanjiVG       |
+### Relationship
 
----
-
-### Entidad Word
-
-Estructura diseñada a partir de los campos del XML:
-
-```JSON
-{
-  "_id": "69ab6170a04f50558e3796ed",
-  "id_XML": 1000800,
-  "word": [
-    {
-      "text": "可憐しい",
-      "info": [
-        {
-          "code_XML": "sK",
-          "label": "search-only kanji form"
-        }
-      ],
-      "priority": []
-    }
-  ],
-  "readings": [
-    {
-      "text": "いじらしい",
-      "noKanji": false,
-      "restrictedTo": [],
-      "info": [],
-      "priority": []
-    }
-  ],
-  "senses": [
-    {
-      "restrictedToKanji": [],
-      "restrictedToReading": [],
-      "partOfSpeech": [
-        {
-          "code_XML": "adj-i",
-          "label": "adjective (keiyoushi)"
-        }
-      ],
-      "fields": [],
-      "misc": [],
-      "dialect": [],
-      "info": [],
-      "crossReferences": [],
-      "antonyms": [],
-      "loanwordSource": [],
-      "glosses": {},
-      "examples": []
-    }
-  ]
-}
-```
-
-> Comentario: `Word` contiene información completa sobre formas, lecturas, significados, ejemplos, préstamos lingüísticos y traducciones por idioma.
-
-| Campo                  | Tipo          | Descripción              | Relación |
-| ---------------------- | ------------- | ------------------------ | -------- |
-| id                     | number        | ID JMdict                | PK       |
-| word.text              | string        | Forma escrita            | → Kanji  |
-| word.info              | array<string> | Información ortográfica  | -        |
-| word.priority          | array<string> | Frecuencia               | -        |
-| readings.text          | string        | Forma en kana            | → Kana   |
-| readings.noKanji       | boolean       | No usa kanji             | -        |
-| readings.restrictedTo  | array<string> | Solo para ciertas formas | -        |
-| readings.info          | array<string> | Notas                    | -        |
-| readings.priority      | array<string> | Prioridad                | -        |
-| senses.partOfSpeech    | array<string> | Categoría gramatical     | -        |
-| senses.fields          | array<string> | Campo técnico            | -        |
-| senses.misc            | array<string> | Registro                 | -        |
-| senses.dialect         | array<string> | Dialecto                 | -        |
-| senses.info            | array<string> | Notas                    | -        |
-| senses.crossReferences | array<string> | Referencias              | → Word   |
-| senses.antonyms        | array<string> | Antónimos                | → Word   |
-| senses.loanwordSource  | array<object> | Origen préstamo          | -        |
-| senses.glosses         | object        | Traducciones             | -        |
-| senses.examples        | array<object> | Frases ejemplo           | -        |
-
-### Relación 
-
-| Con           |  Tipo  | Explicación                                                                          |
-| ------------- |  ----  | ------------------------------------------------------------------------------------ |
-| Word - Kanji  | N - N  | Una palabra puede tener varios kanji, un kanji puede pertenecer a más de una palabra |
+| Between       | Type  | Explanation                                                                 |
+| ------------- | ----- | --------------------------------------------------------------------------- |
+| Word - Kanji  | N - N | A word can have several kanji, a kanji can belong to more than one word.    |
 
 ---
 
-### Entidad Kanji
+### Kanji Entity
 
-Estructura diseñada a partir de los campos del XML:
+| Field                        | Type          | Description                 | Relationship |
+| ---------------------------- | ------------- | --------------------------- | ------------ |
+| kanji                        | string        | Kanji character             | PK           |
+| unicode.codePoint            | string        | Unicode code point          |              |
+| unicode.hex                  | string        | Hexadecimal                 |              |
+| classification.radicals      | array<object> | Radicals by system          | → Radical    |
+| classification.gradeLevel    | number        | Japanese school grade       |              |
+| classification.jlptLevel     | number        | JLPT Level                  |              |
+| classification.frequencyRank | number        | Frequency rank              |              |
+| strokes.count                | number        | Stroke count                |              |
+| strokes.alternateCounts      | array<number> | Alternative counts          |              |
+| strokes.kanjiVGId            | string        | SVG ID                      | → Stroke     |
+| variants                     | array<object> | Graphic variants            |              |
+| references.dictionaryCodes   | array<object> | Dictionary references       |              |
+| references.queryCodes        | array<object> | Search codes                |              |
+| readings.onyomi              | array<object> | ON readings                 |              |
+| readings.kunyomi             | array<object> | KUN readings                |              |
+| readings.nanori              | array<string> | Name readings               |              |
+| readings.chinese             | array<string> | Chinese readings            |              |
+| readings.korean              | array<string> | Korean readings             |              |
+| readings.vietnamese          | array<string> | Vietnamese readings         |              |
+| meanings                     | object        | Meanings by language        |              |
+| radicalNames                 | array<string> | Radical name                | → Radical    |
 
-```JSON
-{
-  "_id":  "69abe9c59df83af4f92f9748",
-  "kanji": "愛",
-  "unicode": {
-    "codePoint": "611b",
-    "hex": "0x611b",
-    "additional": [
-      {
-        "type": "jis208",
-        "value": "1-16-06"
-      }
-    ]
-  },
-  "classification": {
-    "radicals": [
-      {
-        "system": "classical",
-        "number": 61
-      },
-      {
-        "system": "nelson_c",
-        "number": 87
-      }
-    ],
-    "gradeLevel": 4,
-    "jlptLevel": 2,
-    "frequencyRank": 640
-  },
-  "strokes": {
-    "count": 13,
-    "alternateCounts": [],
-    "kanjiVGId": "0611B"
-  },
-  "variants": [],
-  "references": {
-    "dictionaryCodes": [
-      {
-        "dictionary": "nelson_c",
-        "entry": "2829",
-        "volume": null,
-        "page": null
-      },
-    ],
-    "queryCodes": [
-      {
-        "type": "skip",
-        "value": "2-4-9",
-        "misclassification": null
-      }
-    ]
-  },
-  "readings": {
-    "onyomi": [
-      {
-        "reading": "アイ",
-        "common": false
-      }
-    ],
-    "kunyomi": [
-      {
-        "reading": "いと.しい",
-        "common": false
-      },
-      {
-        "reading": "かな.しい",
-        "common": false
-      },
-      {
-        "reading": "め.でる",
-        "common": false
-      },
-      {
-        "reading": "お.しむ",
-        "common": false
-      },
-      {
-        "reading": "まな",
-        "common": false
-      }
-    ],
-    "nanori": ["あ", "あし", "え", "かな", "なる", "めぐ", "めぐみ", "よし","ちか"],
-    "chinese": ["ai4"],
-    "korean": ["ae"],
-    "vietnamese": ["Ái"]
-  },
-  "meanings": {
-    "en": [
-      "Love",
-      "Affection",
-      "Favourite"
-    ],
-    "fr": [
-      "Amour",
-      "Affection",
-      "Favori"
-    ],
-    "es": [
-      "Amor",
-      "Afecto",
-      "Favorito"
-    ],
-    "pt": [
-      "Amor",
-      "Afeição",
-      "Favorito"
-    ]
-  },
-  "radicalNames": [],
-  "components": ["心", "爪", "冖", "夂"]
-}
-```
+| Between | Type | Explanation                          |
+| ------- | ---- | ------------------------------------ |
+| Radical | N-N  | A kanji can have several radicals.   |
+| Stroke  | 1-1  | A kanji has one SVG.                 |
+| Word    | N-N  | A kanji appears in many words.       |
 
-> Comentario: Incluye todo lo necesario para mostrar, animar y relacionar cada kanji dentro de la app.
+### Radical Entity
 
-
-| Campo                        | Tipo          | Descripción                | Relación  |
-| ---------------------------- | ------------- | -------------------------- | --------- |
-| kanji                        | string        | Carácter kanji             | PK        |
-| unicode.codePoint            | string        | Código Unicode             |           |
-| unicode.hex                  | string        | Hexadecimal                |           |
-| classification.radicals      | array<object> | Radicales según sistemas   | → Radical |
-| classification.gradeLevel    | number        | Nivel escolar japonés      |           |
-| classification.jlptLevel     | number        | Nivel JLPT                 |           |
-| classification.frequencyRank | number        | Frecuencia                 |           |
-| strokes.count                | number        | Número de trazos           |           |
-| strokes.alternateCounts      | array<number> | Conteos alternativos       |           |
-| strokes.kanjiVGId            | string        | ID del SVG                 | → Stroke  |
-| variants                     | array<object> | Variantes gráficas         |           |
-| references.dictionaryCodes   | array<object> | Referencias a diccionarios |           |
-| references.queryCodes        | array<object> | Códigos de búsqueda        |           |
-| readings.onyomi              | array<object> | Lecturas ON                |           |
-| readings.kunyomi             | array<object> | Lecturas KUN               |           |
-| readings.nanori              | array<string> | Lecturas de nombre         |           |
-| readings.chinese             | array<string> | Lecturas chinas            |           |
-| readings.korean              | array<string> | Lecturas coreanas          |           |
-| readings.vietnamese          | array<string> | Lecturas vietnamitas       |           |
-| meanings                     | object        | Significados por idioma    |           |
-| radicalNames                 | array<string> | Nombre del radical         | → Radical |
-
-
-| Con     | Tipo | Explicación                           |
-| ------- | ---- | ------------------------------------- |
-| Radical | N-N  | un kanji puede tener varios radicales |
-| Stroke  | 1-1  | un kanji tiene un SVG                 |
-| Word    | N-N  | un kanji aparece en muchas palabras   |
-
-### Entidad Radical
-
-| Campo    | Tipo          | Descripción                             |
+| Field    | Type          | Description                             |
 | -------- | ------------- | --------------------------------------- |
-| radical  | string        | Carácter radical                        |
-| number   | number        | Número radical Kangxi                   |
-| strokes  | number        | Nº trazos                               |
-| name     | string        | Nombre del radical                      |
-| meanings | object        | Significados                            |
-| kanji    | array<string> | Lista de kanji que contienen el radical |
+| radical  | string        | Radical character                       |
+| number   | number        | Kangxi radical number                   |
+| strokes  | number        | Stroke count                            |
+| name     | string        | Radical name                            |
+| meanings | object        | Meanings                                |
+| kanji    | array<string> | List of kanji containing the radical    |
 
+| Between | Type |
+| ------- | ---- |
+| Kanji   | N-N  |
 
-| Con   | Tipo |
-| ----- | ---- |
-| Kanji | N-N  |
+### Kana Entity
 
-### Entidad Kana
+| Field       | Type   | Description          |
+| ----------- | ------ | -------------------- |
+| kana        | string | Kana character       |
+| romaji      | string | Transcription        |
+| type        | string | hiragana / katakana  |
+| column      | string | Phonetic column      |
+| row         | string | Phonetic row         |
+| strokeCount | number | Stroke count         |
 
-| Campo       | Tipo   | Descripción         |
-| ----------- | ------ | ------------------- |
-| kana        | string | Carácter kana       |
-| romaji      | string | Transcripción       |
-| type        | string | hiragana / katakana |
-| column      | string | Columna fonética    |
-| row         | string | Fila fonética       |
-| strokeCount | number | Nº trazos           |
+### Stroke Entity
 
-### Entidad Stroke
+| Field         | Type   | Description |
+| ------------- | ------ | ----------- |
+| kanji         | string | Kanji       |
+| kanjiVGId     | string | SVG ID      |
+| codepoint     | string | Unicode     |
+| strokeCount   | number | Stroke count|
+| strokes.order | number | Order       |
+| strokes.type  | string | Stroke type |
+| strokes.path  | string | SVG Path    |
 
-| Campo         | Tipo   | Descripción   |
-| ------------- | ------ | ------------- |
-| kanji         | string | Kanji         |
-| kanjiVGId     | string | ID del SVG    |
-| codepoint     | string | Unicode       |
-| strokeCount   | number | Nº trazos     |
-| strokes.order | number | Orden         |
-| strokes.type  | string | Tipo de trazo |
-| strokes.path  | string | Path SVG      |
-
-| Con   | Tipo |
-| ----- | ---- |
-| Kanji | 1-1  |
+| Between | Type |
+| ------- | ---- |
+| Kanji   | 1-1  |
 
 ---
 
@@ -692,69 +518,63 @@ Estructura diseñada a partir de los campos del XML:
 
 ### Kanji
 
-| Método | Endpoint          | Descripción                                                | Rol requerido |
-| ------ | ----------------- | ---------------------------------------------------------- | ------------- |
-| GET    | `/api/kanjis`     | Recupera todos los kanjis almacenados en la base de datos. | Público       |
-| POST   | `/api/kanjis`     | Crea un nuevo kanji en la base de datos.                   | Administrador |
-| GET    | `/api/kanjis/:id` | Recupera la información de un kanji específico.            | Público       |
-| PATCH  | `/api/kanjis/:id` | Modifica la información de un kanji existente.             | Administrador |
-| DELETE | `/api/kanjis/:id` | Elimina un kanji de la base de datos.                      | Administrador |
+| Method | Endpoint          | Description                                         | Required Role |
+| ------ | ----------------- | --------------------------------------------------- | ------------- |
+| GET    | `/api/kanjis`     | Retrieves all kanjis stored in the database.        | Public        |
+| POST   | `/api/kanjis`     | Creates a new kanji in the database.                | Admin         |
+| GET    | `/api/kanjis/:id` | Retrieves information for a specific kanji.         | Public        |
+| PATCH  | `/api/kanjis/:id` | Modifies information for an existing kanji.         | Admin         |
+| DELETE | `/api/kanjis/:id` | Deletes a kanji from the database.                  | Admin         |
 
+### Radicals
 
-### Radicales
-
-| Método | Endpoint            | Descripción                                                   | Rol requerido |
-| ------ | ------------------- | ------------------------------------------------------------- | ------------- |
-| GET    | `/api/radicals`     | Recupera todos los radicales almacenados en la base de datos. | Público       |
-| POST   | `/api/radicals`     | Crea un nuevo radical en la base de datos.                    | Administrador |
-| GET    | `/api/radicals/:id` | Recupera la información de un radical específico.             | Público       |
-| PATCH  | `/api/radicals/:id` | Modifica la información de un radical existente.              | Administrador |
-| DELETE | `/api/radicals/:id` | Elimina un radical de la base de datos.                       | Administrador |
-
+| Method | Endpoint            | Description                                         | Required Role |
+| ------ | ------------------- | --------------------------------------------------- | ------------- |
+| GET    | `/api/radicals`     | Retrieves all radicals stored in the database.      | Public        |
+| POST   | `/api/radicals`     | Creates a new radical in the database.              | Admin         |
+| GET    | `/api/radicals/:id` | Retrieves information for a specific radical.       | Public        |
+| PATCH  | `/api/radicals/:id` | Modifies information for an existing radical.       | Admin         |
+| DELETE | `/api/radicals/:id` | Deletes a radical from the database.                | Admin         |
 
 ### Kanas
 
-| Método | Endpoint         | Descripción                                              | Rol requerido |
-| ------ | ---------------- | -------------------------------------------------------- | ------------- |
-| GET    | `/api/kanas`     | Recupera todos los kana almacenados en la base de datos. | Público       |
-| POST   | `/api/kanas`     | Crea un nuevo kana en la base de datos.                  | Administrador |
-| GET    | `/api/kanas/:id` | Recupera la información de un kana específico.           | Público       |
-| PATCH  | `/api/kanas/:id` | Modifica la información de un kana existente.            | Administrador |
-| DELETE | `/api/kanas/:id` | Elimina un kana de la base de datos.                     | Administrador |
+| Method | Endpoint         | Description                                         | Required Role |
+| ------ | ---------------- | --------------------------------------------------- | ------------- |
+| GET    | `/api/kanas`     | Retrieves all kana stored in the database.          | Public        |
+| POST   | `/api/kanas`     | Creates a new kana in the database.                 | Admin         |
+| GET    | `/api/kanas/:id` | Retrieves information for a specific kana.          | Public        |
+| PATCH  | `/api/kanas/:id` | Modifies information for an existing kana.          | Admin         |
+| DELETE | `/api/kanas/:id` | Deletes a kana from the database.                   | Admin         |
 
 ### Words
 
-| Método | Endpoint                | Descripción                                                  | Parámetros               | Rol requerido         |
-| ------ | ----------------------- | ------------------------------------------------------------ | ---------------------    | --------------------- |
-| GET    | `/api/words`            | Recupera todas las palabras registradas en la base de datos. | POS, fields, searchForms | Administrador         |
-| POST   | `/api/words`            | Crea una nueva palabra en la base de datos.                  | body                     | Usuario no registrado |
-| PATCH  | `/api/words/:id`        | Modifica la información de una palabra.                      | updated fields           | Administrador         |
-| DELETE | `/api/words/:id`        | Elimina una palabra de la base de datos.                     |                          | Administrador         |
+| Method | Endpoint          | Description                                         | Required Role |
+| ------ | ----------------- | --------------------------------------------------- | ------------- |
+| GET    | `/api/words`      | Retrieves all words registered in the database.     | Public        |
+| POST   | `/api/words`      | Creates a new word in the database.                 | Admin         |
+| GET    | `/api/words/:id`  | Retrieves information for a specific word.          | Public        |
+| PATCH  | `/api/words/:id`  | Modifies a word's information.                      | Admin         |
+| DELETE | `/api/words/:id`  | Deletes a word from the database.                   | Admin         |
 
-### Usuarios
+### Users
 
-| Método | Endpoint                | Descripción                                                  | Rol requerido         |
-| ------ | ----------------------- | ------------------------------------------------------------ | --------------------- |
-| GET    | `/api/users`            | Recupera todos los usuarios registrados en la base de datos. | Administrador         |
-| POST   | `/api/users`            | Crea un nuevo usuario en la base de datos.                   | Usuario no registrado |
-| PATCH  | `/api/users/:id`        | Modifica los permisos o información de un usuario.           | Administrador         |
-| DELETE | `/api/users/:id`        | Elimina un usuario de la base de datos.                      | Administrador         |
-| GET    | `/api/users/profile/me` | Recupera la información del usuario autenticado.             | Usuario registrado    |
+| Method | Endpoint          | Description                                         | Required Role |
+| ------ | ----------------- | --------------------------------------------------- | ------------- |
+| GET    | `/api/users`      | Retrieves all users registered in the database.     | Admin         |
+| POST   | `/api/users`      | Creates a new user in the database.                 | Public        |
+| PATCH  | `/api/users/:id`  | Modifies a user's permissions or information.       | Admin         |
+| DELETE | `/api/users/:id`  | Deletes a user from the database.                   | Admin         |
+| GET    | `/api/users/:id`  | Retrieves information for the authenticated user.   | Admin         |
 
+### Login and Logout
 
-### Registro y login
+| Method | Endpoint         | Description                                                                 | Required Role      |
+| ------ | ---------------- | --------------------------------------------------------------------------- | ------------------ |
+| POST   | `/api/sessions`  | Registers a new user in the database.                                       | Unregistered User  |
+| DELETE | `/api/sessions`  | Verifies user credentials and allows access (usually returns an auth token).| Registered User    |
 
-| Método | Endpoint        | Descripción                                                                                                 | Rol requerido         |
-| ------ | --------------- | ----------------------------------------------------------------------------------------------------------- | --------------------- |
-| POST   | `/api/register` | Registra un nuevo usuario en la base de datos.                                                              | Usuario no registrado |
-| POST   | `/api/login`    | Verifica las credenciales del usuario y permite el acceso (normalmente devuelve un token de autenticación). | Usuario registrado    |
+### Contact / Bug Reporting
 
-
-### Contacto / Reporte de problemas
-
-| Método | Endpoint       | Descripción                                                                | Rol requerido      |
-| ------ | -------------- | -------------------------------------------------------------------------- | ------------------ |
-| POST   | `/api/reports` | Envía un informe o aviso de error relacionado con una entrada del sistema. | Usuario registrado |
-
-
-> Comentario: Los endpoints siguen el patrón REST estándar; se pueden extender a filtros y paginación según sea necesario.
+| Method | Endpoint         | Description                                                                 | Required Role   |
+| ------ | ---------------- | --------------------------------------------------------------------------- | --------------- |
+| POST   | `/api/reports`   | Sends a report or error notice related to a system entry.                   | Registered User |

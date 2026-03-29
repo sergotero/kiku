@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import { HomePage, AccessPage, KanasPage, SearchPage, DetailPage } from "./pages";
 import "./assets/styles/index.css";
 import Navbar from "./components/ui/navbar/navbar.jsx";
@@ -13,7 +13,7 @@ function App() {
       <Route path="/kanas" element={<KanasPage />} />
       <Route path="/dictionary" element={<SearchPage />} />
       <Route path="/dictionary/:type/:id" element={<DetailPage />} />
-      <Route path="/dictionary/:type/:id" element={<DetailPage />} />
+      <Route path="/*" element={<Navigate to={"/access"} />} />
     </Routes>
     </>
   )

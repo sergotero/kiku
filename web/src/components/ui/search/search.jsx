@@ -1,6 +1,6 @@
 import styles from "./search.module.css";
 
-function Search({ type, search, handleOnChange, handleType, handleOnEnter }) {
+function Search({ type, search, handleOnChange, handleType, handleOnEnter, handleOnClick }) {
 
   const updateType = (event) => {
     handleType(event.target.value);
@@ -12,7 +12,14 @@ function Search({ type, search, handleOnChange, handleType, handleOnEnter }) {
         <option value="kanji">Kanji</option>
         <option value="word">Palabra</option>
       </select>
-      <input type="text" name="search" placeholder="Busca un kanji, una palabra, romaji..." onChange={handleOnChange} value={search} onKeyDown={handleOnEnter}/>
+      <input 
+        type="text" 
+        name="search" 
+        placeholder="Busca un kanji o una palabra (hiragana, katakana o romaji) y pulsa enter." 
+        value={search} 
+        onChange={handleOnChange} 
+        onKeyDown={handleOnEnter} 
+        onClick={handleOnClick}/>
       <i className="fas fa-search"></i>
     </div>
   );

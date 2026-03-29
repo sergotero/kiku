@@ -17,6 +17,7 @@ function SearchPage() {
   const type = queryParams.get("type");
   const category = queryParams.get("category");
   const page = queryParams.get("page") || 0;
+  const term = queryParams.get("term");
 
   const { categories, tags } = useMemo(() => orderWordCategories(wordCategories));
   const kanjiCategories = useMemo(() => orderKanjiCategories(kanjiCat));
@@ -47,6 +48,8 @@ function SearchPage() {
     }
   }
 
+  const handleOnClick = () => setQueryParams({ type });
+
   const handleSelection = (category) => {
     setResult([]);
     setQueryParams({ type, category, page });
@@ -64,11 +67,11 @@ function SearchPage() {
         if (category) {
           if (type === "word") {
             const cat = tags.get(category);
-            const words = await ApiService.listWords({ type, page, category: cat });
+            const words = await ApiService.listWords({ type, term, page, category: cat });
             setResult(words);
           }
           if (type === "kanji") {
-            const kanjis = await ApiService.listKanjis({ type, page, category });
+            const kanjis = await ApiService.listKanjis({ type, term, page, category });
             setResult(kanjis);
           }
         }
@@ -102,6 +105,7 @@ function SearchPage() {
         handleType={handleType}
         handleOnChange={handleOnChange}
         handleOnEnter={handleOnEnter}
+        handleOnClick={handleOnClick}
       />
       <div className={styles.results}>
         {type === "kanji" && result?.map((kanji) => {
