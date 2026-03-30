@@ -16,6 +16,8 @@ app.use("/api", apiRouter);
 // Load REACT App
 app.use(webRouter);
 
-app.listen(process.env.API_SERVER_PORT, () => {
+const port = process.env.API_SERVER_PORT || 3000;
+
+app.listen(port, "0.0.0.0", () => {
   console.log(`Server running at http://localhost:${process.env.API_SERVER_PORT}`);
 })

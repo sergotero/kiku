@@ -1,7 +1,11 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "http://localhost:3000/api",
+  // Si estamos en producción, usamos la ruta relativa /api
+  // Si estamos en desarrollo (local), usamos localhost
+  baseURL: import.meta.env.PROD 
+    ? "/api" 
+    : "http://localhost:3000/api",
   withCredentials: true
 });
 

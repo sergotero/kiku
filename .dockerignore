@@ -1,0 +1,20 @@
+# Ignorar dependencias en cualquier nivel
+**/node_modules/
+**/dist/
+**/.git/
+
+# Ignorar entornos
+**/*.env
+api/dev.example.env
+api/prod.example.env
+api/datasets2
+api/datasets
+api/docs
+
+# Ignorar logs y temporales
+npm-debug.log*
+yarn-error.log*
+.DS_Store
+
+# OJO: NO ignores 'api/datasets' si es ahí donde están los JSON 
+# que el Dockerfile necesita copiar para las semillas.

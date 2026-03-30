@@ -1,7 +1,6 @@
 import createHttpError from "http-errors";
 import Word from "../models/word.model.js";
 
-
 export async function create(req, res){
 
   const checkWord = await Word.findOne({
