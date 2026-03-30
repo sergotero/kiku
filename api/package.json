@@ -9,7 +9,7 @@
   "scripts": {
   "start": "npm run seeds && node app.js",
   "dev": "node --watch --env-file development.env app.js",
-  "seeds": "node datasets/seeds.js"
+  "seeds": "node --env-file production.env datasets/seeds.js"
   },
   "keywords": [],
   "author": "Sergio Otero",
