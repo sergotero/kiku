@@ -53,7 +53,7 @@ The application is built using a modern, scalable architecture:
 ## 🌐 Live Demo
 
 You can explore the live application here:
-👉 **[Visit Kiku App](https://tu-enlace-de-despliegue.com)**
+👉 **[Visit Kiku App](https://kiku.fly.dev/)**
 
 ---
 
