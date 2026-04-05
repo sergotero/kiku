@@ -4,49 +4,49 @@
 }
 
 :root {
-  /* Fonts */
-  font-family: "Lato", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Colors for errors */
+  --error: #b10707;
+
+  /* Colors for tags */
+  --dark-blue: #172573;
+  --electric-blue: #1D64F2;
+  --light-blue: #3abbdb;
+  --light-green: #6de6d3;
+  --light-turquoise: #53B1C2;
+  --pink: #D94ACF;
+  --purple: #772B8C;
+  --turquoise: #3bbba8;
+  --violet: #503FBF;
+
+  /* Colore scheme */
+  --aubergine: #9e005d;
+  --chalk-grey: #1A1A1A;
+  --dark-aubergine: #491835;
+  --dark-gold-yellow: #533e18;
+  --dark-green: #1C5350;
+  --gold-yellow: #FBB03B;
+  --green: #00A99D;
+  --light-grey: #B3B3B3;
+  --smoke-grey: #333333;
+  --white: #FFFFFF;
 
   /* Dark theme */
-  color: rgba(255, 255, 255, 0.87);
   background-color: var(--smoke-grey);
-  
-  /* Colore scheme */
-  --chalk-grey: #1A1A1A;
-  --smoke-grey: #333333;
-  --light-grey: #B3B3B3;
-  --white: #FFFFFF;
-  --green: #00A99D;
-  --dark-green: #1C5350;
-  --aubergine: #9e005d;
-  --dark-aubergine: #491835;
-  --gold-yellow: #FBB03B;
-  --dark-gold-yellow: #533e18;
+  color: rgba(255, 255, 255, 0.87);
+
+  /* Fonts */
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
 
   /* Japanese Style (Dark theme) */
   --imperial-red: #B30000;
-  --strong-gold: #B2953C;
   --light-gold: #A08D57;
   --paper-white: #F8F4DC;
-
-  /* Colors for tags */
-  --pink: #D94ACF; 
-  --purple: #772B8C; 
-  --violet: #503FBF; 
-  --dark-blue: #172573; 
-  --electric-blue: #1D64F2; 
-  --light-blue: #3abbdb; 
-  --light-turquoise: #53B1C2; 
-  --turquoise: #3bbba8; 
-  --light-green: #6de6d3; 
-
-  /* Colors for errors */
-  --error: #b10707;
+  --strong-gold: #B2953C;
 }
 
-*{
+* {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
@@ -57,18 +57,18 @@
 
 .jp-klee {
   font-family: "Klee One", cursive;
-  font-weight: 400;
   font-style: normal;
+  font-weight: 400;
 }
 
 .jp-line {
   font-family: "LINE Seed JP", sans-serif;
-  font-weight: 400;
   font-style: normal;
+  font-weight: 400;
 }
 
 .jp-zen {
   font-family: "Zen Kurenaido", sans-serif;
-  font-weight: 400;
   font-style: normal;
+  font-weight: 400;
 }

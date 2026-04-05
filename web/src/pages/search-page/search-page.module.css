@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
   margin: 1.2rem 0.5rem 0rem 0.5rem;
 }
@@ -34,4 +35,25 @@
 button:disabled{
   background: linear-gradient(0deg, rgb(88, 88, 88) 0%, var(--light-grey) 100%);
   border: 1px solid rgb(26, 24, 21);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grammar-cat {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0.25rem;
+  }
+  .results {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  .buttons {
+    flex-direction: column;
+  }
+  .buttons button {
+    min-width: 5rem;
+    padding: 0.4rem;
+  }
 }

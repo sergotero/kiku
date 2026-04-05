@@ -70,3 +70,24 @@
 .sokuon h2 {
   margin-bottom: 1rem;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "hiragana"
+      "katakana"
+      "dakuon"
+      "yoon"
+      "sokuon";
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  .kanas th, .kanas tr, .kanas td {
+    padding: 0.5rem;
+  }
+  .kanas td:hover {
+    transform: scale(1.2);
+  }
+}

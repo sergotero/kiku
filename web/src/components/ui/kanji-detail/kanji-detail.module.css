@@ -98,6 +98,34 @@
 .meanings{
   grid-area: meaning;
   /* background-color: var(--chalk-grey); */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .term h1 {
+    font-size: 5rem;
+  }
+  .kunyomi, .onyomi {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    padding: 0.25rem 0.5rem;
+  }
+  .kunyomi > p, .onyomi > p {
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 0.25rem;
+  }
+  .readingList {
+    flex-direction: column;
+  }
+  .class-info {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .tags {
+    padding: 0.15rem 0.5rem;
+  }
+}
 }
 
 .meanings summary[open] {

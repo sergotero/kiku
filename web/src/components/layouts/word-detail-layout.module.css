@@ -22,3 +22,25 @@
   gap: 1.5rem;
   padding: 2rem;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "term"
+      "read"
+      "info"
+      "senses"
+      "kanjis";
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid {
+    gap: 1.25rem;
+    padding: 1.5rem;
+  }
+}

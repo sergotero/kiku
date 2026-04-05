@@ -1,51 +1,48 @@
-.navbar, .logo{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--chalk-grey);
+.logo-anchor {
+  text-decoration: none;
 }
 
-.navbar{
+.navbar, .logo {
+  align-items: center;
+  background-color: var(--chalk-grey);
+  display: flex;
+  justify-content: center;
+}
+
+.navbar {
   padding: 0.25rem 1rem;
 }
 
-.logo > img{
-  object-fit: contain;
+.logo > img {
   max-height: 75px;
+  object-fit: contain;
 }
 
-.navbar ul{
+.navbar ul {
+  align-items: center;
   display: flex;
-  margin-left: auto;
   margin-bottom: 0px;
+  margin-left: auto;
 }
 
-.navbar ul li{
+.navbar ul li {
   list-style-type: none;
   padding: 0.5rem;
 }
 
 .navbar ul li a {
-  text-decoration: none;
   color: var(--white);
-}
-
-.logo-anchor{
   text-decoration: none;
 }
 
-.logout i{
+.logout i {
   color: var(--white);
   cursor: pointer;
 }
 
-.navbar i{
+.navbar i {
   border: 1px solid var(--white);
-  padding: 0.5rem;
   border-radius: 50%;
+  padding: 0.5rem;
 }
-
-.navbar ul {
-  display: flex;
-  align-items: center;
 }

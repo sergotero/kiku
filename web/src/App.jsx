@@ -13,6 +13,7 @@ function App() {
       <Route path="/kanas" element={<KanasPage />} />
       <Route path="/dictionary" element={<SearchPage />} />
       <Route path="/dictionary/:type/:id" element={<DetailPage />} />
+      <Route path="/reports" element={<></>} />
       <Route path="/*" element={<Navigate to={"/access"} />} />
     </Routes>
     </>

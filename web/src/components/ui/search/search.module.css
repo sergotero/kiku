@@ -49,3 +49,27 @@
   box-sizing: border-box;
   height: 40px; /* Misma altura que el input */
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search {
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+  }
+  .search select {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 0.5rem;
+  }
+  .search input {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 0.5rem;
+  }
+  .search i {
+    width: 100%;
+    border-radius: 15px;
+    justify-content: center;
+  }
+}

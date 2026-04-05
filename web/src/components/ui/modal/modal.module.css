@@ -14,3 +14,14 @@ dialog:modal{
 dialog::backdrop{
   background: hsla(0, 0%, 0%, 0.8);
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  dialog:modal {
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    padding: 1rem;
+  }
+}

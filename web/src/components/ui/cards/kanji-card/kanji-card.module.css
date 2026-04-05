@@ -85,3 +85,34 @@
   cursor: pointer;
   min-width: 7rem;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kanji-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "kana"
+      "info";
+  }
+  .header {
+    border-right: none;
+    border-bottom: 1px dotted rgba(178, 148, 60, 0.575);
+  }
+  .kanji {
+    font-size: 2rem;
+    padding: 0.25rem;
+  }
+  .english, .spanish {
+    font-size: 0.8rem;
+  }
+  .english span, .spanish span {
+    min-width: 3rem;
+    font-size: 0.7rem;
+    padding: 0.2rem;
+  }
+  .details {
+    min-width: 5rem;
+    padding: 0.1rem;
+  }
+}

@@ -53,3 +53,7 @@ export function getKanjiDetail(id) {
 export function createReport(report){
   return http.post(`/reports`, report);
 }
+
+export function listReports(){
+  return http.get(`/reports`);
+}

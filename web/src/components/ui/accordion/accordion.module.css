@@ -22,3 +22,14 @@ summary:hover {
 details[open] summary {
   background-color: var(--strong-gold);
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  summary {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  .content {
+    padding: 0.5rem;
+  }
+}

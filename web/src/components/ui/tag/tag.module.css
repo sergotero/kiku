@@ -21,3 +21,11 @@
   background-color: rgb(137, 56, 153);
   color: var(--white);
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tags {
+    font-size: 0.8rem;
+    padding: 0.15rem 0.4rem;
+  }
+}

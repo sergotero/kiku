@@ -10,3 +10,25 @@
   gap: 1rem;
   padding: 1rem;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "term"
+    "read"
+    "meaning"
+    "svg"
+    "words";
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+}

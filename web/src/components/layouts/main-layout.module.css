@@ -1,7 +1,7 @@
-.main{
-  display: flex;
+.main {
   align-items: start;
+  display: flex;
+  height: 100%;
   justify-content: center;
   width: 100%;
-  height: 100%;
 }
