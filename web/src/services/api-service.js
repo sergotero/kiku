@@ -28,6 +28,11 @@ export function logout() {
   return http.delete("/sessions");
 }
 
+// --- Users --------------
+export function listUsers() {
+  return http.get("/users");
+}
+
 // --- Words ---------------
 
 export function listWords(queryParams) {

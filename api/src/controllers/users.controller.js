@@ -22,7 +22,7 @@ export async function create(req, res) {
 }
 
 export async function list(req, res) {
-  const users = await User.find({});
+  const users = await User.find({},{name: 1, lastName: 1, rol: 1, email: 1});
 
   res.status(200).json(users);
 }

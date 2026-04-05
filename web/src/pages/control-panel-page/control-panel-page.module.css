@@ -42,12 +42,6 @@
   width: 100%;
 }
 
-.content .buttons{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .buttons button{
   margin: 0.2rem 0.2rem 0.5rem 0.2rem;
   padding: 0.2rem;
