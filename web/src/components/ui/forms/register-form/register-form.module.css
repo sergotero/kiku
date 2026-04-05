@@ -56,11 +56,17 @@
   cursor: default;
 }
 
+
+.fake-label{
+  width: 15%;
+}
+
 .errors{
+  width: 100%;
   font-size: 0.80rem;
   font-weight: 600;
   color: var(--imperial-red);
-  margin-left: 7rem;
+  margin-left: 0rem;
   margin-bottom: 0rem;
 }
 

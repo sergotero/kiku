@@ -56,10 +56,38 @@
   cursor: default;
 }
 
+.fake-label{
+  width: 15%;
+}
+
 .errors{
+  width: 100%;
   font-size: 0.80rem;
   font-weight: 600;
   color: var(--imperial-red);
-  margin-left: 7rem;
+  margin-left: 0rem;
   margin-bottom: 0rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .inputGroup {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .label {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  .input {
+    padding: 0.3rem 0.5rem;
+  }
+  .button {
+    min-width: 5rem;
+    padding: 0.4rem;
+  }
+  .errors {
+    margin-left: 0;
+    font-size: 0.75rem;
+  }
 }

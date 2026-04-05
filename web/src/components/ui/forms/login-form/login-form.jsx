@@ -43,7 +43,13 @@ function LoginForm() {
     <form className={styles.form} method="POST" onSubmit={handleSubmit(onLoginUser)}>
       <fieldset className={styles.fieldset}>
         {/* EMAIL */}
-        {errors.email && (<p className={styles.errors}>{errors.email.message}</p>)}
+        {errors.email && (
+          <div className={styles.inputGroup}>
+            <div className={styles["fake-label"]}></div>
+            <div className={styles.errors}>
+              {errors.email.message}
+            </div>
+          </div>)}
         <div className={`${styles.inputGroup} ${errors.email ? styles.isInvalid : ""}`}>
           <label className={styles.label} htmlFor="email">Email</label>
           <input
@@ -56,7 +62,7 @@ function LoginForm() {
                 },
                 pattern: {
                   value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-z]{2,6}$/,
-                  message: "El email debe ser válido"
+                  message: "*El email debe ser válido"
                 }
               })
             }
@@ -66,7 +72,13 @@ function LoginForm() {
         </div>
 
         {/* PASSWORD */}
-        {errors.password && (<p className={styles.errors}>{errors.password.message}</p>)}
+        {errors.password && (
+        <div className={styles.inputGroup}>
+          <div className={styles["fake-label"]}></div>
+          <div className={styles.errors}>
+            {errors.password.message}
+          </div>
+        </div>)}
         <div className={`${styles.inputGroup} ${errors.password ? styles.isInvalid : ""}`}>
           <label className={styles.label} htmlFor="password">Contraseña</label>
           <input

@@ -14,7 +14,7 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
   .section {
     width: 100%;
     padding: 1rem;

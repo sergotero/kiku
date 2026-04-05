@@ -47,7 +47,13 @@ function RegisterForm(){
       <fieldset className={styles.fieldset}>
         
         {/* NAME */}
-        {errors.name && (<p className={styles.errors}>{errors.name.message}</p>)}
+        {errors.name && (
+        <div className={styles.inputGroup}>
+          <div className={styles["fake-label"]}></div>
+          <div className={styles.errors}>
+            {errors.name.message}
+          </div>
+        </div>)}
         <div className={`${styles.inputGroup} ${errors.name ? styles.isInvalid: ""}`}>
           <label className={styles.label} htmlFor="name">Nombre</label>
           <input 
@@ -66,7 +72,13 @@ function RegisterForm(){
         </div>
 
         {/* lastName */}
-        {errors.lastName && (<p className={styles.errors}>{errors.lastName.message}</p>)}
+        {errors.lastName && (
+        <div className={styles.inputGroup}>
+          <div className={styles["fake-label"]}></div>
+          <div className={styles.errors}>
+            {errors.lastName.message}
+          </div>
+        </div>)}
         <div className={`${styles.inputGroup} ${errors.lastName ? styles.isInvalid: ""}`}>
           <label className={styles.label} htmlFor="">Apellido</label>
           <input 
@@ -84,7 +96,13 @@ function RegisterForm(){
         </div>
 
         {/* EMAIL */}
-        {errors.email && (<p className={styles.errors}>{errors.email.message}</p>)}
+        {errors.email && (
+        <div className={styles.inputGroup}>
+          <div className={styles["fake-label"]}></div>
+          <div className={styles.errors}>
+            {errors.email.message}
+          </div>
+        </div>)}
         <div className={`${styles.inputGroup} ${errors.email ? styles.isInvalid: ""}`}>
           <label className={styles.label} htmlFor="email">Email</label>
           <input
@@ -106,7 +124,13 @@ function RegisterForm(){
         </div>
 
         {/* PASSWORD */}
-        {errors.password && (<p className={styles.errors}>{errors.password.message}</p>)}
+        {errors.password && (
+        <div className={styles.inputGroup}>
+          <div className={styles["fake-label"]}></div>
+          <div className={styles.errors}>
+            {errors.password.message}
+          </div>
+        </div>)}
         <div className={`${styles.inputGroup} ${errors.password ? styles.isInvalid: ""}`}>
           <label className={styles.label} htmlFor="password">Contraseña</label>
           <input 
@@ -136,7 +160,13 @@ function RegisterForm(){
         </div>
 
         {/* CONFIRM PASSWORD */}
-        {errors.confirm_pass && (<p className={styles.errors}>{errors.confirm_pass.message}</p>)}
+        {errors.confirm_pass && (
+        <div className={styles.inputGroup}>
+          <div className={styles["fake-label"]}></div>
+          <div className={styles.errors}>
+            {errors.confirm_pass.message}
+          </div>
+        </div>)}
         <div className={`${styles.inputGroup} ${errors.confirm_pass ? styles.isInvalid: ""}`}>
           <label className={styles.label} htmlFor="confirm_pass">Confirmar contraseña</label>
           <input 

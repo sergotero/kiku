@@ -43,7 +43,7 @@
 }
 
 .readingDisplay {
-  font-size: 2rem;
+  font-size: clamp(0.8rem, 1.5rem, 2rem);
   color: var(--strong-gold);
   font-weight: bold;
 }
@@ -99,35 +99,6 @@ hr{
 
 /* Sección de Kanjis Relacionados (Footer) */
 
-/* Responsive */
-@media (max-width: 768px) {
-  .term {
-    padding: 1rem;
-  }
-  .term h1 {
-    font-size: 2.5rem;
-  }
-  .readingDisplay {
-    font-size: 1.5rem;
-  }
-  .classInfo {
-    padding: 0.5rem;
-  }
-  .wrapper {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  .senseCard {
-    padding: 1rem;
-  }
-  .meanings {
-    grid-template-columns: 1fr;
-  }
-  .posTags {
-    flex-wrap: wrap;
-  }
-}
 .kanjisSection {
   grid-area: kanjis;
   background-color: var(--chalk-grey);
@@ -185,4 +156,35 @@ hr{
 
 .report:hover, .add-list:hover {
   filter: brightness(1.1);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .term {
+    padding: 1rem;
+  }
+  .term h1 {
+    font-size: 2.5rem;
+  }
+  .readingDisplay {
+    font-size: 1.5rem;
+  }
+  .classInfo {
+    padding: 0.5rem;
+  }
+  .wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .senseCard {
+    padding: 1rem;
+  }
+  .meanings {
+    grid-template-columns: 1fr;
+  }
+  .posTags {
+    flex-wrap: wrap;
+  }
 }
