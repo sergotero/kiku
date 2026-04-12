@@ -4,6 +4,7 @@ import ControlPanelLayout from "../../components/layouts/control-panel-layout.js
 import * as ApiServices from "../../services/api-service.js";
 import { useEffect, useState } from "react";
 import { useAuth } from "./../../components/context/index.js";
+import { KanjiCard, WordCard } from "../../components/ui/cards/index.js";
 
 function ControlPanel(){
   const params = useParams();
@@ -11,6 +12,10 @@ function ControlPanel(){
   const [ category, setCategory ] = useState(params.type);
   const [ content, setContent ] = useState(null);
 
+  const fetchLists = async () => {
+    const termLists = await ApiServices.getLists();
+    setContent(termLists);
+  }
   const fetchReports = async () => {
     const reportList = await ApiServices.listReports();
     setContent(reportList);
@@ -21,11 +26,14 @@ function ControlPanel(){
   }
 
   useEffect(() => {
-    if( category === "reports") {
+    if ( category === "reports") {
       fetchReports();
     }
-    if( category === "users") {
+    if ( category === "users") {
       fetchUsers();
+    }
+    if ( category === "lists") {
+      fetchLists();
     }
   }, [params]);
 
@@ -63,6 +71,23 @@ function ControlPanel(){
         </ul>
       </section>
       <section className={styles.content}>
+        {/* Lists */}
+        {content?.lists.map((list) => {
+          list.items.map((item) => {
+            if (item.onModel === "Word") {
+              return <WordCard
+                      key={list.id}
+                      term={item.item}
+                      />
+            }
+            if (item.onModel === "Kanji") {
+              return <KanjiCard
+                      key={list.id}
+                      term={item.item}
+                      />
+            }
+          })
+        })}
         {/* Reports */}
         {user?.rol === "Administrator" && category === "reports" && content && (
           <table>

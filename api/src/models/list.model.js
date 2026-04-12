@@ -1,8 +1,23 @@
 import mongoose from "mongoose";
 
+const itemSchema = mongoose.Schema({
+  item: {
+    type: mongoose.Types.ObjectId,
+    required: true,
+    refPath: 'items.onModel'
+  },
+  onModel: {
+    type: String,
+    required: true,
+    enum: ["Word", "Kanji"]
+  }
+},{ _id: false });
+
 const listSchema = mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  items: { type: [String] }
+  name: { type: String, required: true},
+  items: { 
+    type: [itemSchema]
+  }
 },{
   timestamps: true,
   versionKey: false,

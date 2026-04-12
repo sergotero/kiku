@@ -62,3 +62,17 @@ export function createReport(report){
 export function listReports(){
   return http.get(`/reports`);
 }
+
+// --- Lists ----------------------
+
+export function createList(list){
+  return http.post(`/users/me/lists`, list);
+}
+
+export function getLists(){
+  return http.get(`/users/me/lists`);
+}
+
+export function getListDetails(id){
+  return http.get(`/users/me/lists/${id}`);
+}

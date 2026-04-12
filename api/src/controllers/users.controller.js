@@ -30,7 +30,7 @@ export async function list(req, res) {
 export async function detail(req, res) {
   const { id } = req.params;
   
-  const user = await User.findById(id).populate("lists");
+  const user = await User.findById(id, {name: 1, lastName: 1, rol: 1, email: 1, lists: 1}).populate("lists");
 
   if (!user) {
     throw createHttpError(404, "El usuario no se encuentra registrado en la base de datos");

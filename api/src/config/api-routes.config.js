@@ -5,6 +5,7 @@ import * as KanaController from "../controllers/kanas.controller.js";
 import * as RadicalController from "../controllers/radicals.controller.js";
 import * as UserController from "../controllers/users.controller.js";
 import * as ReportController from "../controllers/reports.controller.js";
+import * as ListController from "../controllers/lists.controller.js";
 import createHttpError from "http-errors";
 import { checkAdmin, checkUser } from "../middlewares/auth.middleware.js";
 import errors from "../middlewares/errors.middleware.js";
@@ -50,7 +51,11 @@ router.patch(`/users/:id`, checkAdmin, UserController.update); //Only admin
 router.delete(`/users/:id`, checkAdmin, UserController.destroy); //Only admin
 
 //Routes for lists
-// router.get(`/users/profile/:id/lists`, ListController.list);
+router.post(`/users/me/lists`, checkUser, ListController.create);
+router.get(`/users/me/lists`, checkUser, ListController.list);
+router.get(`/users/me/lists/:id`, checkUser, ListController.detail);
+// router.patch(`/users/me/lists/:id`, checkUser, ListController.update);
+router.delete(`/users/me/lists/:id`, checkUser, ListController.destroy);
 
 //Routes for login and logout
 router.post(`/sessions`, UserController.login);
