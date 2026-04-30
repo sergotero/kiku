@@ -50,11 +50,4 @@ The application is built using a modern, scalable architecture:
 
 ---
 
-## 🌐 Live Demo
-
-You can explore the live application here:
-👉 **[Visit Kiku App](https://kiku.fly.dev/)**
-
----
-
 *"The limits of my language mean the limits of my world." — Ludwig Wittgenstein*
